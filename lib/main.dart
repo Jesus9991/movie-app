@@ -1,3 +1,4 @@
+import 'package:appmovie_request/controllers/exports/exports.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -17,10 +18,10 @@ class MyApp extends StatelessWidget {
     ]);
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      debugShowCheckedModeBanner: false,
+      theme: MainTheme.whiteTheme,
+      darkTheme: MainTheme.darkTheme,
+      // routes: MainRoutes.routes,
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }

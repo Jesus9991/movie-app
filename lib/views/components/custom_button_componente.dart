@@ -132,7 +132,7 @@ class CustomSecondButton extends StatelessWidget {
       decoration: BoxDecoration(
         color: isDarkMode
             ? PaletteTheme.blackThree.withAlpha((0.15 * 255).toInt())
-            : Color(0xffE3E3E3).withAlpha((0.4 * 255).toInt()),
+            : Color.fromARGB(255, 210, 210, 210).withAlpha((0.4 * 255).toInt()),
         borderRadius: BorderRadius.circular(15),
       ),
       child: ElevatedButton(
@@ -145,7 +145,8 @@ class CustomSecondButton extends StatelessWidget {
               color: PaletteTheme.secondary),
           backgroundColor: isDarkMode
               ? PaletteTheme.blackThree.withAlpha((0.15 * 255).toInt())
-              : Color(0xffE3E3E3).withAlpha((0.4 * 255).toInt()),
+              : Color.fromARGB(255, 210, 210, 210)
+                  .withAlpha((0.4 * 255).toInt()),
           foregroundColor: PaletteTheme.secondary, // Color de las letras
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),

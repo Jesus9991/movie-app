@@ -15,8 +15,8 @@ class ButtonsTheme {
               fontSize: 15,
               fontWeight: FontWeight.w700,
               color: PaletteTheme.principal),
-          foregroundColor: PaletteTheme.principal, //color de las letras */
-          backgroundColor: PaletteTheme.purpleTwo, //color del boton */
+          foregroundColor: PaletteTheme.terteary, //color de las letras */
+          backgroundColor: PaletteTheme.principal, //color del boton */
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))));
   //
@@ -29,15 +29,15 @@ class ButtonsTheme {
       ),
       backgroundColor: PaletteTheme.transparent,
       surfaceTintColor: PaletteTheme.transparent,
-      disabledBackgroundColor: PaletteTheme.greyColor,
-      disabledForegroundColor: PaletteTheme.greyColor,
+      disabledBackgroundColor: PaletteTheme.principal,
+      disabledForegroundColor: PaletteTheme.principal,
       elevation: 0,
       shadowColor: PaletteTheme.transparent,
-      side: const BorderSide(color: PaletteTheme.greyColor),
+      side: const BorderSide(color: PaletteTheme.principal),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
         side:
-            const BorderSide(color: PaletteTheme.greyColor), // Color del borde
+            const BorderSide(color: PaletteTheme.principal), // Color del borde
       ),
     ),
   );
@@ -74,8 +74,8 @@ class ButtonsTheme {
         color: PaletteTheme.principal),
     backgroundColor: PaletteTheme.transparent,
     surfaceTintColor: PaletteTheme.transparent,
-    disabledBackgroundColor: PaletteTheme.greyColor,
-    disabledForegroundColor: PaletteTheme.greyColor,
+    disabledBackgroundColor: PaletteTheme.blackThree,
+    disabledForegroundColor: PaletteTheme.blackThree,
     elevation: 0,
     shadowColor: PaletteTheme.transparent,
     side: const BorderSide(color: PaletteTheme.principal),

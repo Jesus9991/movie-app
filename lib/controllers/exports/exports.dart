@@ -1,3 +1,9 @@
+export 'package:appmovie_request/views/components/custom_button_componente.dart';
+export 'package:appmovie_request/views/components/loading_components.dart';
+export 'package:appmovie_request/views/widgets/scaffold_gradient_effect_widget.dart';
+export 'package:appmovie_request/views/components/card_presentation_component.dart';
+export 'package:appmovie_request/views/components/animated_fade_scale.dart';
+export 'package:appmovie_request/controllers/routes/main_routes.dart';
 export 'package:appmovie_request/controllers/theme/app_bar_theme.dart';
 export 'package:appmovie_request/controllers/theme/button_theme.dart';
 export 'package:appmovie_request/controllers/theme/font_type_theme.dart';

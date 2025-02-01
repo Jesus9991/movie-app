@@ -1,4 +1,5 @@
 import 'package:appmovie_request/controllers/exports/exports.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 /*
@@ -174,6 +175,45 @@ class SocialNetworkComponent extends StatelessWidget {
                 ),
         ),
       ),
+    );
+  }
+}
+
+/*
+richt text
+*/
+class LoginRichTextOnTap extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final Function onTap;
+  const LoginRichTextOnTap({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      textAlign: TextAlign.center,
+      maxLines: 2,
+      text: TextSpan(
+          text: title,
+          style: TextTheme.of(context)
+              .bodyLarge!
+              .copyWith(fontSize: 17, fontWeight: FontWeight.w100),
+          children: [
+            TextSpan(
+              recognizer: TapGestureRecognizer()..onTap = () => onTap(),
+              text: subtitle,
+              style: TextTheme.of(context).bodyLarge!.copyWith(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    // color: PaletteTheme.purpleTwo,
+                  ),
+            )
+          ]),
     );
   }
 }

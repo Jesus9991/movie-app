@@ -21,7 +21,7 @@ class _LoginSesionScreenState extends State<LoginSesionScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+    final resetPrv = Provider.of<ResetPassswordProvider>(context);
     return ScaffoldDownAndUpBlurWidget(
       child: Consumer<LoginSesionProvider>(
         builder: (context, auth, child) => AnimatedFadeScaleComponent(
@@ -42,6 +42,7 @@ class _LoginSesionScreenState extends State<LoginSesionScreen> {
                   hintext: 'Correo electrónico',
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
+                  controller: auth.email,
                   validator: (val) => ValidationInputs.password(val),
                   onChanged: (val) => auth.setEmail(val),
                 ),
@@ -50,6 +51,7 @@ class _LoginSesionScreenState extends State<LoginSesionScreen> {
                 //contraseña
                 InputPasswordComponent(
                   hintext: 'Contraseña',
+                  controller: auth.password,
                   validator: (val) => ValidationInputs.password(val),
                   onChanged: (val) => auth.setPassword(val),
                 ),
@@ -60,7 +62,14 @@ class _LoginSesionScreenState extends State<LoginSesionScreen> {
                   alignment: Alignment.topRight,
                   child: TextButton(
                     onPressed: () {
-                      //Todo: debe navegar a olvide mi contraseña
+                      /*limpia el provider */
+                      resetPrv.cleanProvider();
+
+                      /*navega a cambio de contraseña*/
+                      Navigator.pushNamed(
+                        context,
+                        MainRoutes.resetPasswordRoute,
+                      );
                     },
                     child: Text(
                       'Olvidé mi contraseña',
@@ -73,10 +82,11 @@ class _LoginSesionScreenState extends State<LoginSesionScreen> {
                 SizedBox(height: size.height * .02),
                 //inicio de sesion
                 CustomButtonLoadingComponent(
-                  isLoading: false,
+                  isLoading: auth.isLoading,
                   text: 'Iniciar sesion',
                   onTap: () async {
                     if (formKey.currentState!.validate()) {
+                      auth.setisLoading(true);
                       /*almacena el token del usuari*/
                       auth.setTokenUser(ApiKeysPath.token);
 
@@ -89,6 +99,7 @@ class _LoginSesionScreenState extends State<LoginSesionScreen> {
 
                       /*navega si coincide con el email y password guardado*/
                       await auth.setNavegationForLogin(context);
+                      auth.setisLoading(false);
                     }
                   },
                 ),

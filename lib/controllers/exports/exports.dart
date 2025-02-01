@@ -1,3 +1,4 @@
+export 'package:appmovie_request/controllers/providers/auth/reset_passsword_provider.dart';
 export 'package:appmovie_request/controllers/preferences/save_values_user_shared.dart';
 export 'package:appmovie_request/controllers/validations/inputs_validation.dart';
 export 'package:appmovie_request/controllers/providers/auth/login_sesion_provider.dart';
@@ -16,3 +17,4 @@ export 'package:appmovie_request/controllers/theme/button_theme.dart';
 export 'package:appmovie_request/controllers/theme/font_type_theme.dart';
 export 'package:appmovie_request/controllers/theme/main_theme.dart';
 export 'package:appmovie_request/controllers/theme/palette_color_theme.dart';
+export 'package:appmovie_request/views/widgets/snackbar_widget.dart';

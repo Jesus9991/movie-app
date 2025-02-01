@@ -15,7 +15,8 @@ class MyProviderAPP extends StatelessWidget {
     return MultiProvider(
       providers: [
         /*provider para el inicio de sesion */
-        ChangeNotifierProvider(create: (context) => LoginSesionProvider())
+        ChangeNotifierProvider(create: (context) => LoginSesionProvider()),
+        ChangeNotifierProvider(create: (context) => ResetPassswordProvider()),
       ],
       child: MyApp(),
     );

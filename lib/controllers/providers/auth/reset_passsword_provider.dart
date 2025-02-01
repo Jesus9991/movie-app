@@ -1,20 +1,22 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:appmovie_request/controllers/exports/exports.dart';
+
 import 'package:flutter/material.dart';
 
-/*
-Provider para el inicio de sesion para el usuario
-*/
-class LoginSesionProvider extends ChangeNotifier {
+//provider: provider
+
+class ResetPassswordProvider extends ChangeNotifier {
   //controladores
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
+  final TextEditingController _confirmPassword = TextEditingController();
   String _tokenUser = '';
   bool _isLoading = false;
 
   TextEditingController get email => _email;
   TextEditingController get password => _password;
+  TextEditingController get confirmPassword => _confirmPassword;
 
   String get tokenUser => _tokenUser;
   bool get isLoading => _isLoading;
@@ -30,6 +32,11 @@ class LoginSesionProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  setConfirmPassword(String val) {
+    _confirmPassword.text = val; //confirmar contraseña
+    notifyListeners();
+  }
+
   setTokenUser(String token) {
     _tokenUser = token; //almacena el token del usuario
     notifyListeners();
@@ -40,21 +47,21 @@ class LoginSesionProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //*INICIO DE SESION
-  setNavegationForLogin(BuildContext context) async {
+  //*SI EL CORREO
+  setNavegationForEmail(BuildContext context) async {
     try {
       final emailSaved = await UserDataPreferences().getEmailUser();
-      final passwordSaved = await UserDataPreferences().getForPassword();
+      // final passwordSaved = await UserDataPreferences().getForPassword();
 
-      if (_email.text == emailSaved && _password.text == passwordSaved) {
+      if (_email.text == emailSaved) {
         /*navega al home si la contraseña y correo coinciden*/
-        Navigator.pushReplacementNamed(
+        Navigator.pushNamed(
           context,
-          MainRoutes.navBarRoute,
+          MainRoutes.confirmPasswordRoute,
         );
         return SnackbarWidget.showSnackBar(
           context: context,
-          message: '¡Inicio de sesión exitoso!',
+          message: '¡Correo válido!',
           icon: Icons.error,
           colorIcon: PaletteTheme.succesColor,
         );
@@ -64,6 +71,38 @@ class LoginSesionProvider extends ChangeNotifier {
           message: 'Correo no encontrado.',
           icon: Icons.error,
           colorIcon: PaletteTheme.terteary,
+        );
+      }
+      notifyListeners();
+    } catch (e) {
+      return SnackbarWidget.showSnackBar(
+        context: context,
+        message: 'Error: $e',
+        icon: Icons.error,
+        colorIcon: PaletteTheme.terteary,
+      );
+    }
+  }
+
+  //*NAVEGA AL CONFIRMAR LA CONTRASEÑA
+  setNavegationForPassword(BuildContext context) async {
+    try {
+      final passwordSaved = await UserDataPreferences().getForPassword();
+
+      if (_password.text == passwordSaved) {
+        /*navega al home si la contraseña y correo coinciden*/
+        Navigator.pushReplacementNamed(
+          context,
+          MainRoutes.navBarRoute,
+        );
+        /*cambio de contraseña*/
+        await UserDataPreferences().saveForPassword(_password.text);
+
+        return SnackbarWidget.showSnackBar(
+          context: context,
+          message: '¡Cambio realizado con éxito!',
+          icon: Icons.error,
+          colorIcon: PaletteTheme.succesColor,
         );
       } else if (_password.text != passwordSaved) {
         return SnackbarWidget.showSnackBar(
@@ -89,6 +128,7 @@ class LoginSesionProvider extends ChangeNotifier {
     _email.clear();
     _password.clear();
     _tokenUser = '';
+    _confirmPassword.clear();
     notifyListeners();
   }
 }

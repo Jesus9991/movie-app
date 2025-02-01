@@ -147,3 +147,100 @@ class ScaffoldDownAndUpBlurWidget extends StatelessWidget {
     );
   }
 }
+
+class ScaffoldDownAppBarAndUpBlurWidget extends StatelessWidget {
+  final String title;
+  final Widget child;
+  const ScaffoldDownAppBarAndUpBlurWidget({
+    super.key,
+    required this.title,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    /*entorno el brillo actual (modo oscuro o claro) */
+    Brightness brightness = MediaQuery.of(context).platformBrightness;
+    /*verifica si el modo es oscuro o claro */
+    bool isDarkMode = brightness == Brightness.dark;
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        centerTitle: false,
+        title: Text(title),
+      ),
+      body: SizedBox(
+        height: size.height,
+        width: size.width,
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            // fondo que se verá afectado por el desenfoque
+            Positioned(
+              left: size.width * 0.01,
+              top: 10,
+              child: Container(
+                alignment: Alignment.topCenter,
+                height: size.height * 0.2,
+                width: 80,
+                decoration: BoxDecoration(
+                  // color: PaletteTheme.terteary,
+                  gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        PaletteTheme.terteary,
+                        PaletteTheme.tertearyTwo,
+                        PaletteTheme.blackThree,
+                      ]),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(100),
+                    topRight: Radius.circular(100),
+                  ),
+                ),
+              ),
+            ),
+
+            Positioned(
+              // right: size.width * 0.01,
+              bottom: 10,
+              child: Container(
+                alignment: Alignment.topCenter,
+                height: size.height * 0.2,
+                width: 80,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        PaletteTheme.terteary,
+                        PaletteTheme.tertearyTwo,
+                        PaletteTheme.blackThree,
+                      ]),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(100),
+                    topRight: Radius.circular(100),
+                  ),
+                ),
+              ),
+            ),
+
+            Blur(
+              blur: 110,
+              colorOpacity: 0.01,
+              blurColor:
+                  isDarkMode ? PaletteTheme.principal : PaletteTheme.secondary,
+              child: SizedBox(
+                height: size.height,
+                width: size.width,
+              ),
+            ),
+            // El contenido principal del widget
+            child,
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -11,6 +11,8 @@ class MainRoutes {
   static const registerUserRoute = '/register_user_route';
   static const selectMoviesRoute = '/select_movie_route';
   static const navBarRoute = '/nav_bar_route';
+  static const resetPasswordRoute = '/reset_password_route';
+  static const confirmPasswordRoute = '/confirm_password_route';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     /*-----RUTA INICIAL------*/
@@ -20,5 +22,7 @@ class MainRoutes {
     /*------HOME------*/
     selectMoviesRoute: (_) => const SelectFavoritesMoviesScreen(),
     navBarRoute: (_) => const NavBarForsScreenWidgets(),
+    resetPasswordRoute: (_) => const ResetPasswordScreen(),
+    confirmPasswordRoute: (_) => const ConfirmPasswordScreen(),
   };
 }

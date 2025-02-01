@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:appmovie_request/controllers/exports/exports.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
 /*
 componentes y listas para el home
@@ -38,7 +39,8 @@ class _ListBannerHomeComponentsState extends State<ListBannerHomeComponents> {
     if (widget.banner.isLoading) {
       return ShimmerContainerComponents();
     } else {
-      if (widget.banner.errorMessage == null) {
+      if (widget.banner.errorMessage == null ||
+          widget.banner.errorMessage != '') {
         return Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -175,6 +177,54 @@ class _BannerHomeComponent extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+/*titulo y arrow para mostrar al usuario */
+class TitleArrowComponents extends StatelessWidget {
+  final String title;
+  final Function onTap;
+  const TitleArrowComponents({
+    super.key,
+    required this.title,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    /*entorno el brillo actual (modo oscuro o claro) */
+    Brightness brightness = MediaQuery.of(context).platformBrightness;
+    /*verifica si el modo es oscuro o claro */
+    bool isDarkMode = brightness == Brightness.dark;
+    return Container(
+      width: size.width,
+      height: size.height * .03,
+      padding: EdgeInsets.symmetric(horizontal: size.width * .03),
+      child: Row(
+        children: [
+          Text(
+            title,
+            textAlign: TextAlign.start,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge!
+                .copyWith(fontWeight: FontWeight.bold),
+          ),
+          const Spacer(),
+          InkWell(
+            onTap: () => onTap(),
+            child: Icon(
+              Iconsax.arrow_right_3_outline,
+              color:
+                  isDarkMode ? PaletteTheme.secondary : PaletteTheme.principal,
+            ),
+          )
+        ],
       ),
     );
   }

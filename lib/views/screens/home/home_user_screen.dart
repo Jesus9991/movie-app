@@ -1,4 +1,5 @@
 import 'package:appmovie_request/controllers/exports/exports.dart';
+import 'package:appmovie_request/views/components/home_components.dart';
 import 'package:flutter/material.dart';
 
 /*
@@ -17,6 +18,17 @@ class HomeUserScreen extends StatelessWidget {
         slivers: [
           //apbar
           const AppbarHomeComponents(),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                SizedBox(height: size.height * .03),
+                TitleArrowComponents(
+                  title: 'Populares ahora',
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

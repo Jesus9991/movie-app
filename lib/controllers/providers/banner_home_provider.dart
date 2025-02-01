@@ -35,10 +35,9 @@ class BannerHomeProvider extends ChangeNotifier {
   Future fetchBannerMovies() async {
     if (_movies != null) return; //no hace la peticion si hay datos
     /*cambio de estados*/
-    // setIsLoading(true);
+
     _isLoading = true;
     _errorMessage = null;
-    // setErrorMessage('');
 
     try {
       final url = Uri.parse(

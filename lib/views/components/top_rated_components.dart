@@ -3,24 +3,23 @@ import 'package:appmovie_request/controllers/exports/exports.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 /*
-lista y card para las peliculas populares en el home
+lista y card para las peliculas mejor calificadas en el home
 */
 
-class ListPopularsNowComponents extends StatefulWidget {
-  final PopularsHomeProvider populars;
-  const ListPopularsNowComponents({
+class ListTopRatedComponents extends StatefulWidget {
+  final TopRatedHomeProvider rated;
+  const ListTopRatedComponents({
     super.key,
-    required this.populars,
+    required this.rated,
   });
 
   @override
-  State<ListPopularsNowComponents> createState() =>
+  State<ListTopRatedComponents> createState() =>
       _ListPopularsNowComponentsState();
 }
 
-class _ListPopularsNowComponentsState extends State<ListPopularsNowComponents> {
+class _ListPopularsNowComponentsState extends State<ListTopRatedComponents> {
   @override
   void initState() {
     super.initState();
@@ -28,19 +27,19 @@ class _ListPopularsNowComponentsState extends State<ListPopularsNowComponents> {
   }
 
   getDataBanner() async {
-    await widget.populars.fetchPopularsMovies();
+    await widget.rated.fetchTopRateMovies();
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final banner = Provider.of<PopularsHomeProvider>(context);
+    final rated = Provider.of<TopRatedHomeProvider>(context);
 
-    if (widget.populars.isLoading) {
+    if (widget.rated.isLoading) {
       return ShimmerHorizontalComponents();
     } else {
-      if (widget.populars.errorMessage == null ||
-          widget.populars.errorMessage != '') {
+      if (widget.rated.errorMessage == null ||
+          widget.rated.errorMessage != '') {
         return Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,9 +51,9 @@ class _ListPopularsNowComponentsState extends State<ListPopularsNowComponents> {
               ),
               SizedBox(height: size.height * .02),
               CustomErrorButton(
-                isLoading: banner.isLoading,
+                isLoading: rated.isLoading,
                 onTap: () async {
-                  await banner.refreshPopularsMovies();
+                  await rated.refreshTopRateMovies();
                 },
               )
             ],
@@ -65,9 +64,9 @@ class _ListPopularsNowComponentsState extends State<ListPopularsNowComponents> {
           height: size.height * .32,
           padding: EdgeInsets.only(left: size.width * .03),
           child: CarouselSlider.builder(
-            itemCount: widget.populars.movies!.results.length,
+            itemCount: widget.rated.movies!.results.length,
             itemBuilder: (context, index, realIndex) {
-              final data = widget.populars.movies!.results[index];
+              final data = widget.rated.movies!.results[index];
 
               return _PopularsMoviesHomeComponents(
                 id: data.id.toString(),
@@ -149,13 +148,20 @@ class _PopularsMoviesHomeComponents extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
 
-            Text(
-              year,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.start,
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Icon(Icons.star, color: PaletteTheme.starColor, size: 15),
+                Text(
+                  '$voteAverage ',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.start,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
+            )
           ],
         ),
       ),

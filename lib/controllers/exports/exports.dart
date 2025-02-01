@@ -1,3 +1,6 @@
+export 'package:appmovie_request/models/top_rated_models.dart';
+export 'package:appmovie_request/controllers/providers/top_rated_providers.dart';
+export 'package:appmovie_request/views/components/top_rated_components.dart';
 export 'package:appmovie_request/controllers/providers/populars_home_provider.dart';
 export 'package:appmovie_request/models/popular_now_models.dart';
 export 'package:appmovie_request/views/components/shadow_for_images_components.dart';

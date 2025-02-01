@@ -1,5 +1,4 @@
 import 'package:appmovie_request/controllers/exports/exports.dart';
-import 'package:appmovie_request/views/components/home_components.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +16,7 @@ class AppbarHomeComponents extends StatelessWidget {
       toolbarHeight: size.height * .4,
       expandedHeight: size.height * .05,
       elevation: 0,
-      pinned: true,
+      pinned: false,
       backgroundColor: PaletteTheme.transparent,
       flexibleSpace: FlexibleSpaceBar(
         collapseMode: CollapseMode.parallax,

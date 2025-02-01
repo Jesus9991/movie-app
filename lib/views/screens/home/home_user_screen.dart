@@ -13,6 +13,7 @@ class HomeUserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final populars = Provider.of<PopularsHomeProvider>(context);
+    final rated = Provider.of<TopRatedHomeProvider>(context);
 
     return ScaffoldDownAndUpBlurWidget(
       child: CustomScrollView(
@@ -26,9 +27,23 @@ class HomeUserScreen extends StatelessWidget {
               [
                 SizedBox(height: size.height * .03),
                 //lista de populares
-                TitleArrowComponents(title: 'Populares ahora', onTap: () {}),
+                TitleArrowComponents(
+                    title: 'Populares ahora',
+                    onTap: () {
+                      //Todo: navegar a la lista completa
+                    }),
                 SizedBox(height: size.height * .02),
                 ListPopularsNowComponents(populars: populars),
+                //mejor calificas
+                TitleArrowComponents(
+                    title: 'Mejor calificadas',
+                    onTap: () {
+                      //Todo: navegar a la lista completa
+                    }),
+                SizedBox(height: size.height * .02),
+                ListTopRatedComponents(rated: rated),
+
+                SizedBox(height: size.height * .2),
               ],
             ),
           ),

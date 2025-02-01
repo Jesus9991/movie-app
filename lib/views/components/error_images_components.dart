@@ -15,11 +15,16 @@ class ErrorImagesComponents extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadio ?? 15),
-      child: Image.asset(
-        path ?? ImagesAssetsPath.placeHolder,
-        fit: BoxFit.contain,
+    final size = MediaQuery.of(context).size;
+    return SizedBox(
+      height: size.height,
+      width: size.width,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(borderRadio ?? 15),
+        child: Image.asset(
+          path ?? ImagesAssetsPath.placeHolder,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }

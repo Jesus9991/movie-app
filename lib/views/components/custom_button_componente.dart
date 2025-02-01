@@ -167,3 +167,47 @@ class CustomSecondButton extends StatelessWidget {
     );
   }
 }
+
+class CustomErrorButton extends StatelessWidget {
+  final Function onTap;
+  final bool isLoading;
+
+  const CustomErrorButton({
+    super.key,
+    required this.onTap,
+    required this.isLoading,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Container(
+      width: size.width * .2,
+      height: size.height * .05,
+      decoration: BoxDecoration(
+        color: PaletteTheme.terteary,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: isLoading == true
+          ? Center(
+              child: LoadingButtonComponents(),
+            )
+          : ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shadowColor: PaletteTheme.transparent,
+                elevation: 0,
+                textStyle: FontsTheme.typeFont.copyWith(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: PaletteTheme.secondary),
+                backgroundColor: PaletteTheme.terteary,
+                foregroundColor: PaletteTheme.secondary, // Color de las letras
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14)),
+              ),
+              onPressed: () => onTap(),
+              child: Icon(Icons.replay),
+            ),
+    );
+  }
+}

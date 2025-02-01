@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:appmovie_request/controllers/exports/exports.dart';
 import 'package:appmovie_request/views/components/home_components.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +12,7 @@ class AppbarHomeComponents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+    final banner = Provider.of<BannerHomeProvider>(context);
     return SliverAppBar(
       toolbarHeight: size.height * .4,
       expandedHeight: size.height * .05,
@@ -26,7 +25,9 @@ class AppbarHomeComponents extends StatelessWidget {
         background: Stack(
           children: [
             //lista de imagenes
-            ListBannerHomeComponents(),
+            ListBannerHomeComponents(
+              banner: banner,
+            ),
             //appbar blur
             Container(
               height: size.height * .1,
@@ -57,16 +58,6 @@ class _DetailsAppBarComponent extends StatefulWidget {
 
 class _DetailsAppBarComponentState extends State<_DetailsAppBarComponent> {
   @override
-  void initState() {
-    super.initState();
-    // informationDetail();
-  }
-
-  // informationDetail() async {
-  //   await widget.info.getInformationUserSQL();
-  // }
-
-  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
@@ -90,14 +81,20 @@ class _DetailsAppBarComponentState extends State<_DetailsAppBarComponent> {
                     textAlign: TextAlign.start,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.headlineMedium,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineMedium!
+                        .copyWith(color: PaletteTheme.secondary),
                   ),
                   Text(
                     value.nameUser.text,
                     textAlign: TextAlign.start,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(color: PaletteTheme.secondary),
                   ),
                 ],
               ),

@@ -1,3 +1,4 @@
+export 'package:appmovie_request/views/components/shadow_for_images_components.dart';
 export 'package:appmovie_request/models/movies_for_banner_models.dart';
 export 'package:appmovie_request/controllers/providers/banner_home_provider.dart';
 export 'package:appmovie_request/views/components/shimmer_components.dart';

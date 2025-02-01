@@ -19,4 +19,5 @@ class PaletteTheme {
   static const tertearyTwo = Color(0xff54262D);
   static const greyColor = Color.fromARGB(141, 143, 142, 142);
   static const succesColor = Color(0xff32CD32);
+  static const starColor = Color(0xfff0b96c);
 }

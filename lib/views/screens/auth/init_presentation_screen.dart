@@ -26,6 +26,7 @@ class _InitPresentationScreenState extends State<InitPresentationScreen> {
 
           //texto
           AnimatedFadeScaleComponent(
+            fadeDuration: const Duration(seconds: 4),
             child: Text(
               'Encuéntrame las películas más populares en el cine.',
               style: Theme.of(context).textTheme.displaySmall,
@@ -38,15 +39,25 @@ class _InitPresentationScreenState extends State<InitPresentationScreen> {
           CustomButton(
             text: 'Iniciar sesión',
             onTap: () {
-              //Todo: debe llevar la inicio de sesion
+              /*navega al inicio de sesion*/
+              Navigator.pushReplacementNamed(
+                context,
+                MainRoutes.loginUserRoute,
+              );
             },
           ),
           SizedBox(height: size.height * .03),
           // registro
           CustomSecondButton(
             text: 'Registrarse',
-            onTap: () {},
-          )
+            onTap: () {
+              /*navegacion al registro del usuario */
+              Navigator.pushReplacementNamed(
+                context,
+                MainRoutes.registerUserRoute,
+              );
+            },
+          ),
         ],
       ),
     ));

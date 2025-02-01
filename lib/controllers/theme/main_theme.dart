@@ -47,8 +47,8 @@ class MainTheme {
     splashFactory: InkSparkle.splashFactory,
     pageTransitionsTheme: const PageTransitionsTheme(
         builders: <TargetPlatform, PageTransitionsBuilder>{
-          TargetPlatform.android: ZoomPageTransitionsBuilder(),
-          TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
+          TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
         }),
     // navigationBarTheme: NavBarMainThemeData.navigationBarLight,
   );
@@ -94,12 +94,12 @@ class MainTheme {
     textButtonTheme: ButtonsTheme.textButtonDark,
     iconButtonTheme: ButtonsTheme.iconButtonDark,
     dividerTheme: const DividerThemeData(color: PaletteTheme.whiteTwo),
-    splashColor: PaletteTheme.whiteTwo.withAlpha((0.2 * 255).toInt()),
+    splashColor: PaletteTheme.blackThree.withAlpha((0.2 * 255).toInt()),
     splashFactory: InkSparkle.splashFactory,
     pageTransitionsTheme: const PageTransitionsTheme(
         builders: <TargetPlatform, PageTransitionsBuilder>{
-          TargetPlatform.android: ZoomPageTransitionsBuilder(),
-          TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
+          TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
         }),
   );
 }

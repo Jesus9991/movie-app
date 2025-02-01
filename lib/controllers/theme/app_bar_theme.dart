@@ -11,26 +11,13 @@ class AppBarMainTheme {
 
   static AppBarTheme appbarLight = AppBarTheme(
     iconTheme: const IconThemeData(
-      color: PaletteTheme.secondary,
+      color: PaletteTheme.principal,
       size: 25,
     ),
     actionsIconTheme: const IconThemeData(
-      color: PaletteTheme.secondary,
+      color: PaletteTheme.principal,
       size: 25,
     ),
-    color: PaletteTheme.transparent,
-    centerTitle: true,
-    elevation: 0,
-    titleTextStyle: typeFont.copyWith(
-        fontSize: 15,
-        fontWeight: FontWeight.bold,
-        color: PaletteTheme.secondary),
-  );
-  //: modo oscuro
-  static AppBarTheme appbarDark = AppBarTheme(
-    iconTheme: const IconThemeData(color: PaletteTheme.principal, size: 25),
-    actionsIconTheme:
-        const IconThemeData(color: PaletteTheme.principal, size: 25),
     color: PaletteTheme.transparent,
     centerTitle: true,
     elevation: 0,
@@ -38,5 +25,18 @@ class AppBarMainTheme {
         fontSize: 15,
         fontWeight: FontWeight.bold,
         color: PaletteTheme.principal),
+  );
+  //: modo oscuro
+  static AppBarTheme appbarDark = AppBarTheme(
+    iconTheme: const IconThemeData(color: PaletteTheme.secondary, size: 25),
+    actionsIconTheme:
+        const IconThemeData(color: PaletteTheme.secondary, size: 25),
+    color: PaletteTheme.transparent,
+    centerTitle: true,
+    elevation: 0,
+    titleTextStyle: typeFont.copyWith(
+        fontSize: 15,
+        fontWeight: FontWeight.bold,
+        color: PaletteTheme.secondary),
   );
 }

@@ -7,9 +7,18 @@ manejo de rutas, de forma optmizada, en caso de usar solo se debe llamar la clas
 
 class MainRoutes {
   static const screenInitRoute = '/screen_init';
+  static const loginUserRoute = '/login_user_route';
+  static const registerUserRoute = '/register_user_route';
+  static const selectMoviesRoute = '/select_movie_route';
+  static const navBarRoute = '/nav_bar_route';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     /*-----RUTA INICIAL------*/
     screenInitRoute: (_) => const InitPresentationScreen(),
+    loginUserRoute: (_) => const LoginSesionScreen(),
+    registerUserRoute: (_) => const RegisterUserScreen(),
+    /*------HOME------*/
+    selectMoviesRoute: (_) => const SelectFavoritesMoviesScreen(),
+    navBarRoute: (_) => const NavBarForsScreenWidgets(),
   };
 }

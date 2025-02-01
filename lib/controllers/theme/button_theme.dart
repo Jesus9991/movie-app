@@ -62,7 +62,7 @@ class ButtonsTheme {
         PaletteTheme.principal), //color de las letras */
 
     iconSize: WidgetStateProperty.all(25),
-    iconColor: WidgetStateProperty.all(PaletteTheme.secondary),
+    iconColor: WidgetStateProperty.all(PaletteTheme.principal),
   ));
   //: textos para el modo oscuro
 
@@ -113,9 +113,9 @@ class ButtonsTheme {
     shadowColor: WidgetStatePropertyAll(
         PaletteTheme.principal.withAlpha((0.5 * 255).toInt())),
     foregroundColor: const WidgetStatePropertyAll(
-        PaletteTheme.principal), //color de las letras */
+        PaletteTheme.secondary), //color de las letras */
 
     iconSize: WidgetStateProperty.all(25),
-    iconColor: WidgetStateProperty.all(PaletteTheme.principal),
+    iconColor: WidgetStateProperty.all(PaletteTheme.secondary),
   ));
 }

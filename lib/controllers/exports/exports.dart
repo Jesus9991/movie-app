@@ -1,3 +1,9 @@
+export 'package:appmovie_request/controllers/preferences/save_values_user_shared.dart';
+export 'package:appmovie_request/controllers/validations/inputs_validation.dart';
+export 'package:appmovie_request/controllers/providers/auth/login_sesion_provider.dart';
+export 'package:appmovie_request/views/components/inputs_components.dart';
+export 'package:appmovie_request/views/components/auth_components.dart';
+export 'package:appmovie_request/controllers/path/images_assets_path.dart';
 export 'package:appmovie_request/controllers/path/api_keys_path.dart';
 export 'package:appmovie_request/views/components/custom_button_componente.dart';
 export 'package:appmovie_request/views/components/loading_components.dart';

@@ -17,4 +17,6 @@ class PaletteTheme {
   static const whiteThree = Color(0xffF0F0F0);
   static const terteary = Color(0xffDB324B);
   static const tertearyTwo = Color(0xff54262D);
+  static const greyColor = Color.fromARGB(141, 143, 142, 142);
+  static const succesColor = Color(0xff32CD32);
 }

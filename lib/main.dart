@@ -1,9 +1,25 @@
 import 'package:appmovie_request/controllers/exports/exports.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyProviderAPP());
+}
+
+class MyProviderAPP extends StatelessWidget {
+  const MyProviderAPP({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        /*provider para el inicio de sesion */
+        ChangeNotifierProvider(create: (context) => LoginSesionProvider())
+      ],
+      child: MyApp(),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -25,3 +41,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+// LoginSesionProvider

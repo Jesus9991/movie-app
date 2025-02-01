@@ -22,12 +22,14 @@ class _LoginSesionScreenState extends State<LoginSesionScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final resetPrv = Provider.of<ResetPassswordProvider>(context);
+    final registerPrv = Provider.of<RegisterUserProvider>(context);
     return ScaffoldDownAndUpBlurWidget(
       child: Consumer<LoginSesionProvider>(
         builder: (context, auth, child) => AnimatedFadeScaleComponent(
           child: Form(
             key: formKey,
             child: ListView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               physics: const BouncingScrollPhysics(),
               padding: EdgeInsets.symmetric(
                   horizontal: size.width * .04, vertical: size.height * .05),
@@ -43,7 +45,7 @@ class _LoginSesionScreenState extends State<LoginSesionScreen> {
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
                   controller: auth.email,
-                  validator: (val) => ValidationInputs.password(val),
+                  validator: (val) => ValidationInputs.email(val),
                   onChanged: (val) => auth.setEmail(val),
                 ),
                 SizedBox(height: size.height * .03),
@@ -90,11 +92,6 @@ class _LoginSesionScreenState extends State<LoginSesionScreen> {
                       /*almacena el token del usuari*/
                       auth.setTokenUser(ApiKeysPath.token);
 
-                      // /*almacena el token, email y contraseña*/
-                      // await UserDataPreferences()
-                      //     .saveEmailUser(auth.email.text);
-                      // await UserDataPreferences()
-                      //     .saveForPassword(auth.password.text);
                       await UserDataPreferences().saveTokenUser(auth.tokenUser);
 
                       /*navega si coincide con el email y password guardado*/
@@ -108,6 +105,7 @@ class _LoginSesionScreenState extends State<LoginSesionScreen> {
                 CustomSecondButton(
                   text: 'Registrarse',
                   onTap: () {
+                    registerPrv.cleanProvider();
                     /*navegacion al registro del usuario */
                     Navigator.pushNamed(
                       context,
@@ -124,7 +122,12 @@ class _LoginSesionScreenState extends State<LoginSesionScreen> {
                   isLoading: false,
                   icon: ImagesAssetsPath.googleBanner,
                   onTap: () {
-                    //Todo: debe mostrar un snacbar en contrusccion
+                    SnackbarWidget.showSnackBar(
+                      context: context,
+                      message: 'En construcción',
+                      icon: Icons.error,
+                      colorIcon: PaletteTheme.terteary,
+                    );
                   },
                 ),
                 SizedBox(height: size.height * .02),

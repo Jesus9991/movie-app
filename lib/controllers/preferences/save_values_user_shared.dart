@@ -9,6 +9,7 @@ class UserDataPreferences {
   String keyForEmail = 'email_user';
   String keyForPassword = 'password_user';
   String keyForToken = 'token_user';
+  String keyForName = 'user_name_user';
 
   /*guarda el valor seleccionado */
   Future<void> saveEmailUser(String value) async {
@@ -47,6 +48,19 @@ class UserDataPreferences {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(keyForToken, value);
     log('saveTokenUser $value');
+  }
+
+  /*guarda el valor seleccionado */
+  Future<void> saveUserName(String value) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(keyForName, value);
+    log('saveTokenUser $value');
+  }
+
+  /*recupera la opcion seleciconada */
+  Future<String?> getUserName() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString(keyForName);
   }
 
   /*elimina todos los datos del usuario */

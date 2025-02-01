@@ -29,6 +29,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           child: Form(
             key: formKey,
             child: ListView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               physics: const BouncingScrollPhysics(),
               padding: EdgeInsets.symmetric(
                   horizontal: size.width * .04, vertical: size.height * .05),
@@ -49,7 +50,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
                   controller: auth.email,
-                  validator: (val) => ValidationInputs.password(val),
+                  validator: (val) => ValidationInputs.email(val),
                   onChanged: (value) {},
                   // onChanged: (val) => auth.setEmail(val),
                 ),

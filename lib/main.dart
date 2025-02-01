@@ -17,6 +17,7 @@ class MyProviderAPP extends StatelessWidget {
         /*provider para el inicio de sesion */
         ChangeNotifierProvider(create: (context) => LoginSesionProvider()),
         ChangeNotifierProvider(create: (context) => ResetPassswordProvider()),
+        ChangeNotifierProvider(create: (context) => RegisterUserProvider()),
       ],
       child: MyApp(),
     );

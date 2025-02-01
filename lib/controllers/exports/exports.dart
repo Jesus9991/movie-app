@@ -1,3 +1,4 @@
+export 'package:appmovie_request/controllers/providers/auth/register_user_provider.dart';
 export 'package:appmovie_request/controllers/providers/auth/reset_passsword_provider.dart';
 export 'package:appmovie_request/controllers/preferences/save_values_user_shared.dart';
 export 'package:appmovie_request/controllers/validations/inputs_validation.dart';

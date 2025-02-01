@@ -18,7 +18,9 @@ class AppBarMainTheme {
       color: PaletteTheme.principal,
       size: 25,
     ),
-    color: PaletteTheme.transparent,
+    // color: PaletteTheme.transparent,
+    foregroundColor: PaletteTheme.transparent,
+    backgroundColor: PaletteTheme.transparent,
     centerTitle: true,
     elevation: 0,
     titleTextStyle: typeFont.copyWith(
@@ -31,7 +33,8 @@ class AppBarMainTheme {
     iconTheme: const IconThemeData(color: PaletteTheme.secondary, size: 25),
     actionsIconTheme:
         const IconThemeData(color: PaletteTheme.secondary, size: 25),
-    color: PaletteTheme.transparent,
+    foregroundColor: PaletteTheme.transparent,
+    backgroundColor: PaletteTheme.transparent,
     centerTitle: true,
     elevation: 0,
     titleTextStyle: typeFont.copyWith(

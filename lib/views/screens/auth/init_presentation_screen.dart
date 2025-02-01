@@ -18,6 +18,7 @@ class _InitPresentationScreenState extends State<InitPresentationScreen> {
     return ScaffoldDownAndUpBlurWidget(
         child: AnimatedFadeScaleComponent(
       child: ListView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         padding: EdgeInsets.symmetric(
             horizontal: size.width * .04, vertical: size.height * .1),
         physics: const BouncingScrollPhysics(),

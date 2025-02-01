@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:appmovie_request/controllers/exports/exports.dart';
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
@@ -166,10 +168,27 @@ class ScaffoldDownAppBarAndUpBlurWidget extends StatelessWidget {
     bool isDarkMode = brightness == Brightness.dark;
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        centerTitle: false,
-        title: Text(title),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60.0),
+        child: ClipRRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
+            child: AppBar(
+              backgroundColor: isDarkMode
+                  ? PaletteTheme.principal.withAlpha((0.1 * 255).toInt())
+                  : PaletteTheme.secondary.withAlpha((0.1 * 255)
+                      .toInt()), // Opacidad para el efecto de cristal
+              elevation: 0,
+              title: const Text("Blur AppBar"),
+              centerTitle: true,
+            ),
+          ),
+        ),
       ),
+      // appBar: AppBar(
+      //   centerTitle: false,
+      //   title: Text(title),
+      // ),
       body: SizedBox(
         height: size.height,
         width: size.width,

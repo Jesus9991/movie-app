@@ -28,6 +28,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
           child: Form(
             key: formKey,
             child: ListView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               physics: const BouncingScrollPhysics(),
               padding: EdgeInsets.symmetric(
                   horizontal: size.width * .04, vertical: size.height * .05),

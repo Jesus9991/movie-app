@@ -1,3 +1,8 @@
+export 'package:appmovie_request/controllers/services/vibration_effect_services.dart';
+export 'package:appmovie_request/controllers/providers/favorites_movies_provider.dart';
+export 'package:appmovie_request/controllers/json/favorites_movies_json.dart';
+export 'package:appmovie_request/models/favorites_movies_models.dart';
+export 'package:appmovie_request/views/components/app_bar_components.dart';
 export 'package:appmovie_request/views/components/type_favorites_components.dart';
 export 'package:appmovie_request/controllers/providers/auth/navegation_system_provider.dart';
 export 'package:appmovie_request/controllers/providers/auth/register_user_provider.dart';

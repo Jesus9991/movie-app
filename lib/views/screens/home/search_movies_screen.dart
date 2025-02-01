@@ -13,8 +13,32 @@ class SearchMoviesScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('SearchMoviesScreen'),
       ),
-      body: Center(
-        child: Text(''),
+      body: ListView(
+        children: [
+          Container(
+            height: 200,
+            width: 200,
+            color: Colors.amber,
+          ),
+          SizedBox(height: size.height * .03),
+          Container(
+            height: 200,
+            width: 200,
+            color: Colors.red,
+          ),
+          SizedBox(height: size.height * .03),
+          Container(
+            height: 200,
+            width: 200,
+            color: Colors.amber,
+          ),
+          SizedBox(height: size.height * .03),
+          Container(
+            height: 200,
+            width: 200,
+            color: Colors.red,
+          ),
+        ],
       ),
     );
   }

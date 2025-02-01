@@ -34,8 +34,14 @@ class SelectFavoritesMoviesScreen extends StatelessWidget {
             ),
             SizedBox(height: size.height * .03),
             CustomButton(
-              text: 'sdsadsadas',
-              onTap: () {},
+              text: 'Continuar',
+              onTap: () {
+                /*navega al home si la contraseña y correo coinciden*/
+                Navigator.pushReplacementNamed(
+                  context,
+                  MainRoutes.navBarRoute,
+                );
+              },
             ),
           ],
         ),

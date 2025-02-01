@@ -19,6 +19,8 @@ class MyProviderAPP extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ResetPassswordProvider()),
         ChangeNotifierProvider(create: (context) => RegisterUserProvider()),
         ChangeNotifierProvider(create: (context) => NavegationSystemProvider()),
+        /*provider para peliculas */
+        ChangeNotifierProvider(create: (context) => FavoritesMoviesProvider()),
       ],
       child: NavegationSystemApp(),
     );

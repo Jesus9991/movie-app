@@ -45,7 +45,7 @@ class LoadingComponents extends StatelessWidget {
             )
           : CupertinoActivityIndicator(
               color:
-                  isDarkMode ? PaletteTheme.principal : PaletteTheme.blackThree,
+                  isDarkMode ? PaletteTheme.secondary : PaletteTheme.blackThree,
               radius: 12,
             ),
     );

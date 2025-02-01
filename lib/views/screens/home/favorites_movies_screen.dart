@@ -11,7 +11,7 @@ class FavoritesMoviesScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('FavoritesMoviesScreen'),
+        title: Text('FavoritesMoviesSssfcreen'),
       ),
       body: Center(
         child: Text(''),

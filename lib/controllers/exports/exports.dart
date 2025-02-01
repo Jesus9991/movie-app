@@ -1,3 +1,5 @@
+export 'package:appmovie_request/views/components/type_favorites_components.dart';
+export 'package:appmovie_request/controllers/providers/auth/navegation_system_provider.dart';
 export 'package:appmovie_request/controllers/providers/auth/register_user_provider.dart';
 export 'package:appmovie_request/controllers/providers/auth/reset_passsword_provider.dart';
 export 'package:appmovie_request/controllers/preferences/save_values_user_shared.dart';

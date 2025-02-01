@@ -49,7 +49,7 @@ class _RegisterUserScreenState extends State<RegisterUserScreen> {
                   hintext: 'Nombre y apellido',
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.text,
-                  textCapitalization: TextCapitalization.sentences,
+                  textCapitalization: TextCapitalization.words,
                   controller: auth.userName,
                   validator: (val) => ValidationInputs.inputEmpty(val),
                   onChanged: (val) => auth.setUserName(val),

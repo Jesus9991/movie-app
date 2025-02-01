@@ -18,14 +18,45 @@ class MyProviderAPP extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => LoginSesionProvider()),
         ChangeNotifierProvider(create: (context) => ResetPassswordProvider()),
         ChangeNotifierProvider(create: (context) => RegisterUserProvider()),
+        ChangeNotifierProvider(create: (context) => NavegationSystemProvider()),
       ],
-      child: MyApp(),
+      child: NavegationSystemApp(),
     );
   }
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+/*sistema de navegación*/
+class NavegationSystemApp extends StatelessWidget {
+  const NavegationSystemApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final navProvider = Provider.of<NavegationSystemProvider>(context);
+    return MyApp(
+      navProvider: navProvider,
+    );
+  }
+}
+
+class MyApp extends StatefulWidget {
+  final NavegationSystemProvider navProvider;
+  const MyApp({
+    super.key,
+    required this.navProvider,
+  });
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late Future<void> initialization;
+
+  @override
+  void initState() {
+    super.initState();
+    initialization = widget.navProvider.setNavegationSystemUser();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +64,36 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: MainTheme.whiteTheme,
-      darkTheme: MainTheme.darkTheme,
-      routes: MainRoutes.routes,
-      initialRoute: MainRoutes.screenInitRoute,
+    return FutureBuilder(
+      future: initialization,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return Consumer<NavegationSystemProvider>(
+              builder: (context, value, child) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Movie app',
+              theme: MainTheme.whiteTheme,
+              darkTheme: MainTheme.darkTheme,
+              routes: MainRoutes.routes,
+              initialRoute: value.tokenUser.isEmpty
+                  ? MainRoutes.loginUserRoute
+                  //Todo:descomentar
+                  // : MainRoutes.navBarRoute,
+                  //Todoo: eliminar
+                  : MainRoutes.selectMoviesRoute,
+              // initialRoute: MainRoutes.navBarRoute,
+            );
+          });
+        } else {
+          return const MaterialApp(
+              debugShowCheckedModeBanner: false,
+              home: Scaffold(
+                  body: Center(
+                child: LoadingComponents(),
+              )));
+        }
+      },
     );
   }
 }

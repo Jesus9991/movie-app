@@ -50,8 +50,7 @@ class _NavBarAppScreenWidgetsState extends State<NavBarForsScreenWidgets> {
                 : PaletteTheme.secondary.withAlpha((0.1 * 255).toInt()),
             // Theme.of(context).primaryColor.withAlpha((0.6 * 255).toInt()),
             selectedItemColor: PaletteTheme.secondary,
-            unselectedItemColor:
-                isDarkMode ? PaletteTheme.greyColor : PaletteTheme.blackTwo,
+            unselectedItemColor: PaletteTheme.blackTwo,
             iconSize: 25,
             selectedFontSize: 0,
             unselectedFontSize: 0,

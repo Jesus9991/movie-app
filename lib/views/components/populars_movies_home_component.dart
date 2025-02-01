@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:appmovie_request/controllers/exports/exports.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
 
 /*
@@ -117,27 +120,53 @@ class _PopularsMoviesHomeComponents extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             //imagen
-            InkWell(
-              onTap: () {
-                //Todo: debe navegar a los detalles
-              },
-              child: SizedBox(
-                height: size.height * .25,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.network(
-                    "${ApiKeysPath.lookImages}$image",
-                    fit: BoxFit.cover,
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return ShimmerContainerComponents();
-                    },
-                    errorBuilder: (context, error, stackTrace) =>
-                        ErrorImagesComponents(
-                      borderRadio: 0,
+            SizedBox(
+              height: size.height * .25,
+              child: Stack(
+                alignment: Alignment.topRight,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(15),
+                      onTap: () {
+                        //Todo: debe navegar a los detalles
+                      },
+                      child: Image.network(
+                        "${ApiKeysPath.lookImages}$image",
+                        fit: BoxFit.cover,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return ShimmerContainerComponents();
+                        },
+                        errorBuilder: (context, error, stackTrace) =>
+                            ErrorImagesComponents(
+                          borderRadio: 0,
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  Container(
+                    height: size.width * 0.1,
+                    width: size.height * 0.045,
+                    margin: EdgeInsets.all(5),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                        child: IconButton(
+                          onPressed: () {
+                            //Todo: debe marcar como favorito
+                          },
+                          icon: Icon(
+                            Iconsax.heart_outline,
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             SizedBox(height: size.height * .01),

@@ -61,7 +61,7 @@ class _ListPopularsNowComponentsState extends State<ListTopRatedComponents> {
         );
       } else {
         return Container(
-          height: size.height * .32,
+          height: size.height * .16,
           padding: EdgeInsets.only(left: size.width * .03),
           child: CarouselSlider.builder(
             itemCount: widget.rated.movies!.results.length,
@@ -79,7 +79,7 @@ class _ListPopularsNowComponentsState extends State<ListTopRatedComponents> {
             options: CarouselOptions(
               height: size.height,
               aspectRatio: 16 / 9,
-              viewportFraction: 0.45,
+              viewportFraction: 0.4,
               autoPlay: false,
             ),
           ),
@@ -109,7 +109,7 @@ class _PopularsMoviesHomeComponents extends StatelessWidget {
     return FadeIn(
       duration: const Duration(seconds: 1),
       child: Container(
-        width: size.width * .4,
+        width: size.width * .35,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,7 +121,8 @@ class _PopularsMoviesHomeComponents extends StatelessWidget {
                 //Todo: debe navegar a los detalles
               },
               child: SizedBox(
-                height: size.height * .25,
+                height: size.height * .1,
+                width: size.width,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: Image.network(

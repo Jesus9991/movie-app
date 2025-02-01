@@ -1,3 +1,5 @@
+export 'package:appmovie_request/controllers/providers/populars_home_provider.dart';
+export 'package:appmovie_request/models/popular_now_models.dart';
 export 'package:appmovie_request/views/components/shadow_for_images_components.dart';
 export 'package:appmovie_request/models/movies_for_banner_models.dart';
 export 'package:appmovie_request/controllers/providers/banner_home_provider.dart';
@@ -32,3 +34,5 @@ export 'package:appmovie_request/controllers/theme/font_type_theme.dart';
 export 'package:appmovie_request/controllers/theme/main_theme.dart';
 export 'package:appmovie_request/controllers/theme/palette_color_theme.dart';
 export 'package:appmovie_request/views/widgets/snackbar_widget.dart';
+export 'package:appmovie_request/views/components/home_components.dart';
+export 'package:appmovie_request/views/components/populars_movies_home_component.dart';

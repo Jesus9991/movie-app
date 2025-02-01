@@ -25,6 +25,7 @@ class MyProviderAPP extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => UserInformationProvider()),
         /*banner en el home */
         ChangeNotifierProvider(create: (context) => BannerHomeProvider()),
+        ChangeNotifierProvider(create: (context) => PopularsHomeProvider()),
       ],
       child: NavegationSystemApp(),
     );

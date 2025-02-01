@@ -4,10 +4,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
+
 /*
 componentes y listas para el home
 */
-
 class ListBannerHomeComponents extends StatefulWidget {
   final BannerHomeProvider banner;
   const ListBannerHomeComponents({

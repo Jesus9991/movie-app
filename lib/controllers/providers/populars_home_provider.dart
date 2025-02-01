@@ -1,21 +1,19 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:convert';
 import 'dart:developer';
+import 'package:appmovie_request/controllers/exports/exports.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:appmovie_request/controllers/exports/exports.dart';
 
 /*
-provider: para la lista de imagenes en el home
+provider para la lista de popular
 */
-class BannerHomeProvider extends ChangeNotifier {
+class PopularsHomeProvider extends ChangeNotifier {
   //datos
-  ListMoviesForBannerModels? _movies;
+  PopularNowModels? _movies;
   bool _isLoading = false;
   String? _errorMessage;
 
-  ListMoviesForBannerModels? get movies => _movies;
+  PopularNowModels? get movies => _movies;
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
 
@@ -30,8 +28,8 @@ class BannerHomeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //*POST: PETICION PARA OBTENER LA LISTA DE PELICULAS EN EL BANNER
-  Future fetchBannerMovies() async {
+  //*POST: PETICION PARA OBTENER LA LISTA DE PELICULAS
+  Future fetchPopularsMovies() async {
     if (_movies != null) return; //no hace la peticion si hay datos
     /*cambio de estados*/
 
@@ -40,7 +38,7 @@ class BannerHomeProvider extends ChangeNotifier {
 
     try {
       final url = Uri.parse(
-          "${ApiKeysPath.httpApi}/3/trending/movie/day?language=es-ES");
+          "${ApiKeysPath.httpApi}/3/tv/popular?language=es-ES&page=1");
       final response = await http.get(
         url,
         headers: {
@@ -53,14 +51,13 @@ class BannerHomeProvider extends ChangeNotifier {
         /*json para la respuesta */
         final data = json.decode(response.body);
         /*llena los datos */
-        _movies = ListMoviesForBannerModels.fromJson(data);
+        _movies = PopularNowModels.fromJson(data);
 
-        log('numero de datos ${_movies!.results.length}');
+        log('fetchPopularsMovies: ${_movies!.results.length}');
         /*cambio de estado */
         setErrorMessage('');
 
         setIsLoading(false);
-        log('succes list banner: ${response.statusCode}');
 
         notifyListeners();
       } else {
@@ -76,8 +73,8 @@ class BannerHomeProvider extends ChangeNotifier {
   }
 
   /*metodo para forzar la actualización de datos (si el usuario lo requiere) */
-  Future<void> refreshBannersMovies() async {
+  Future<void> refreshPopularsMovies() async {
     _movies = null;
-    fetchBannerMovies();
+    fetchPopularsMovies();
   }
 }

@@ -48,11 +48,11 @@ class RegisterUserProvider extends ChangeNotifier {
   //*REGISTRO DEL USUARIO
   setNavegationForRegister(BuildContext context) async {
     try {
-      /*navega al home si la contraseña y correo coinciden*/
-      Navigator.pushReplacementNamed(
-        context,
-        MainRoutes.navBarRoute,
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        MainRoutes.selectMoviesRoute,
+        (route) => false,
       );
+
       return SnackbarWidget.showSnackBar(
         context: context,
         message: '¡Registro exitoso!',

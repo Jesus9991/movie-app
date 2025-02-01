@@ -52,28 +52,37 @@ class _NavBarAppScreenWidgetsState extends State<NavBarForsScreenWidgets> {
             selectedItemColor: PaletteTheme.secondary,
             unselectedItemColor:
                 isDarkMode ? PaletteTheme.greyColor : PaletteTheme.blackTwo,
-            iconSize: 26,
-            selectedFontSize: 12,
-            unselectedFontSize: 12,
-            enableFeedback: true,
-            onTap: (value) {
+            iconSize: 25,
+            selectedFontSize: 0,
+            unselectedFontSize: 0,
+            showUnselectedLabels: false,
+            showSelectedLabels: false,
+            enableFeedback: false,
+            type: BottomNavigationBarType.fixed,
+            onTap: (value) async {
               onTapped(value);
+              await VibrationEffectServices().buttonVibrationEffect();
             },
             items: const [
               BottomNavigationBarItem(
-                label: 'INICIO',
                 icon: Icon(Iconsax.home_2_outline),
                 activeIcon: Icon(Iconsax.home_2_bold),
+                label: '',
               ),
               BottomNavigationBarItem(
-                label: 'DATOS',
-                icon: Icon(Iconsax.command_square_outline),
-                activeIcon: Icon(Iconsax.command_square_bold),
+                icon: Icon(Iconsax.search_normal_1_outline),
+                activeIcon: Icon(Iconsax.search_normal_1_bold),
+                label: '',
               ),
               BottomNavigationBarItem(
-                label: 'Perfil',
+                icon: Icon(Iconsax.heart_outline),
+                activeIcon: Icon(Iconsax.heart_bold),
+                label: '',
+              ),
+              BottomNavigationBarItem(
                 icon: Icon(Iconsax.profile_2user_outline),
                 activeIcon: Icon(Iconsax.profile_2user_bold),
+                label: '',
               ),
             ],
           ),

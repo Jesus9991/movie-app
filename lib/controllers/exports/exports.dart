@@ -1,3 +1,8 @@
+export 'package:appmovie_request/models/movies_for_banner_models.dart';
+export 'package:appmovie_request/controllers/providers/banner_home_provider.dart';
+export 'package:appmovie_request/views/components/shimmer_components.dart';
+export 'package:appmovie_request/views/components/error_images_components.dart';
+export 'package:appmovie_request/controllers/providers/user_information_provider.dart';
 export 'package:appmovie_request/controllers/services/vibration_effect_services.dart';
 export 'package:appmovie_request/controllers/providers/favorites_movies_provider.dart';
 export 'package:appmovie_request/controllers/json/favorites_movies_json.dart';

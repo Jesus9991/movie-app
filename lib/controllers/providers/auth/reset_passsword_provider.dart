@@ -91,9 +91,9 @@ class ResetPassswordProvider extends ChangeNotifier {
 
       if (_password.text == passwordSaved) {
         /*navega al home si la contraseña y correo coinciden*/
-        Navigator.pushReplacementNamed(
-          context,
+        Navigator.of(context).pushNamedAndRemoveUntil(
           MainRoutes.navBarRoute,
+          (route) => false,
         );
         /*cambio de contraseña*/
         await UserDataPreferences().saveForPassword(_password.text);

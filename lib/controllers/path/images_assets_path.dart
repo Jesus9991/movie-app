@@ -6,4 +6,5 @@ class ImagesAssetsPath {
   static String bannerLogoLight = 'assets/img/darkBanner.png';
   static String googleBanner = 'assets/img/googlelogo.png';
   static String placeHolder = 'assets/img/movieplaceholder.png';
+  static String photoProfile = 'assets/img/profilephoto.png';
 }

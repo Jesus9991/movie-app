@@ -37,9 +37,9 @@ class SelectFavoritesMoviesScreen extends StatelessWidget {
               text: 'Continuar',
               onTap: () {
                 /*navega al home si la contraseña y correo coinciden*/
-                Navigator.pushReplacementNamed(
-                  context,
+                Navigator.of(context).pushNamedAndRemoveUntil(
                   MainRoutes.navBarRoute,
+                  (route) => false,
                 );
               },
             ),

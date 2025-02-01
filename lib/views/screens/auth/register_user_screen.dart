@@ -94,6 +94,8 @@ class _RegisterUserScreenState extends State<RegisterUserScreen> {
                       await UserDataPreferences()
                           .saveUserName(auth.userName.text);
                       await UserDataPreferences().saveTokenUser(auth.tokenUser);
+                      await UserDataPreferences()
+                          .saveForPhoto(ImagesAssetsPath.photoProfile);
 
                       /*navega si coincide con el email y password guardado*/
                       await auth.setNavegationForRegister(context);

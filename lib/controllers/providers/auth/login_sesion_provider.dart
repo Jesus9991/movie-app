@@ -47,10 +47,9 @@ class LoginSesionProvider extends ChangeNotifier {
       final passwordSaved = await UserDataPreferences().getForPassword();
 
       if (_email.text == emailSaved && _password.text == passwordSaved) {
-        /*navega al home si la contraseña y correo coinciden*/
-        Navigator.pushReplacementNamed(
-          context,
+        Navigator.of(context).pushNamedAndRemoveUntil(
           MainRoutes.navBarRoute,
+          (route) => false,
         );
         return SnackbarWidget.showSnackBar(
           context: context,

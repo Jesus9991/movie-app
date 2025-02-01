@@ -168,6 +168,7 @@ class ScaffoldDownAppBarAndUpBlurWidget extends StatelessWidget {
     bool isDarkMode = brightness == Brightness.dark;
     return Scaffold(
       extendBodyBehindAppBar: true,
+      extendBody: true,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60.0),
         child: ClipRRect(
@@ -179,8 +180,8 @@ class ScaffoldDownAppBarAndUpBlurWidget extends StatelessWidget {
                   : PaletteTheme.secondary.withAlpha((0.1 * 255)
                       .toInt()), // Opacidad para el efecto de cristal
               elevation: 0,
-              title: const Text("Blur AppBar"),
-              centerTitle: true,
+              title: Text(title),
+              centerTitle: false,
             ),
           ),
         ),

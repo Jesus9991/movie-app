@@ -21,6 +21,8 @@ class MyProviderAPP extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => NavegationSystemProvider()),
         /*provider para peliculas */
         ChangeNotifierProvider(create: (context) => FavoritesMoviesProvider()),
+        /*informacion del usuario*/
+        ChangeNotifierProvider(create: (context) => UserInformationProvider()),
       ],
       child: NavegationSystemApp(),
     );
@@ -81,9 +83,9 @@ class _MyAppState extends State<MyApp> {
               initialRoute: value.tokenUser.isEmpty
                   ? MainRoutes.loginUserRoute
                   //Todo:descomentar
-                  // : MainRoutes.navBarRoute,
-                  //Todoo: eliminar
-                  : MainRoutes.selectMoviesRoute,
+                  : MainRoutes.navBarRoute,
+              //Todoo: eliminar
+              // : MainRoutes.selectMoviesRoute,
               // initialRoute: MainRoutes.navBarRoute,
             );
           });

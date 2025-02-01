@@ -1,3 +1,4 @@
+import 'package:appmovie_request/controllers/exports/exports.dart';
 import 'package:flutter/material.dart';
 
 /*
@@ -9,35 +10,13 @@ class HomeUserScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('HomeUserScreen'),
-      ),
-      body: ListView(
-        children: [
-          Container(
-            height: 200,
-            width: 200,
-            color: Colors.amber,
-          ),
-          SizedBox(height: size.height * .03),
-          Container(
-            height: 200,
-            width: 200,
-            color: Colors.red,
-          ),
-          SizedBox(height: size.height * .03),
-          Container(
-            height: 200,
-            width: 200,
-            color: Colors.amber,
-          ),
-          SizedBox(height: size.height * .03),
-          Container(
-            height: 200,
-            width: 200,
-            color: Colors.red,
-          ),
+    return ScaffoldDownAndUpBlurWidget(
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        slivers: [
+          //apbar
+          const AppbarHomeComponents(),
         ],
       ),
     );

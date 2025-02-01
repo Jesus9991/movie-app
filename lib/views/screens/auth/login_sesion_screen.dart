@@ -93,6 +93,8 @@ class _LoginSesionScreenState extends State<LoginSesionScreen> {
                       auth.setTokenUser(ApiKeysPath.token);
 
                       await UserDataPreferences().saveTokenUser(auth.tokenUser);
+                      await UserDataPreferences()
+                          .saveForPhoto(ImagesAssetsPath.photoProfile);
 
                       /*navega si coincide con el email y password guardado*/
                       await auth.setNavegationForLogin(context);

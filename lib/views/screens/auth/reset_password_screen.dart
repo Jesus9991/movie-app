@@ -67,6 +67,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       auth.setTokenUser(ApiKeysPath.token);
 
                       await UserDataPreferences().saveTokenUser(auth.tokenUser);
+                      await UserDataPreferences()
+                          .saveForPhoto(ImagesAssetsPath.photoProfile);
+
                       /*navega si el correo es valid */
                       await auth.setNavegationForEmail(context);
 

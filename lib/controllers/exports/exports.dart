@@ -1,3 +1,6 @@
+export 'package:appmovie_request/views/components/possible_interest_components.dart';
+export 'package:appmovie_request/controllers/providers/possible_interest_provider.dart';
+export 'package:appmovie_request/models/possible_interests_models.dart';
 export 'package:appmovie_request/models/top_rated_models.dart';
 export 'package:appmovie_request/controllers/providers/top_rated_providers.dart';
 export 'package:appmovie_request/views/components/top_rated_components.dart';

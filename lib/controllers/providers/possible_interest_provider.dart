@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 /*
-provider para la lista de mejor calificadas
+provider para traer los posibles intereses
 */
-class TopRatedHomeProvider extends ChangeNotifier {
+class PossibleInterestProvider extends ChangeNotifier {
   //datos
-  TopRateModels? _movies;
+  PossibleInterestsModels? _movies;
   bool _isLoading = false;
   String? _errorMessage;
 
-  TopRateModels? get movies => _movies;
+  PossibleInterestsModels? get movies => _movies;
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
 
@@ -29,7 +29,7 @@ class TopRatedHomeProvider extends ChangeNotifier {
   }
 
   //*POST: PETICION PARA OBTENER LA LISTA DE PELICULAS
-  Future fetchTopRateMovies() async {
+  Future fetchPossiblesInterestMovies() async {
     if (_movies != null) return; //no hace la peticion si hay datos
     /*cambio de estados*/
 
@@ -38,7 +38,7 @@ class TopRatedHomeProvider extends ChangeNotifier {
 
     try {
       final url = Uri.parse(
-          "${ApiKeysPath.httpApi}/3/tv/top_rated?language=es-ES&page=2");
+          "${ApiKeysPath.httpApi}/3/tv/on_the_air?language=es-ES&page=1");
       final response = await http.get(
         url,
         headers: {
@@ -51,9 +51,9 @@ class TopRatedHomeProvider extends ChangeNotifier {
         /*json para la respuesta */
         final data = json.decode(response.body);
         /*llena los datos */
-        _movies = TopRateModels.fromJson(data);
+        _movies = PossibleInterestsModels.fromJson(data);
 
-        log('fetchTopRateMovies: ${_movies!.results.length}');
+        log('fetchPossiblesInterestMovies: ${_movies!.results.length}');
         /*cambio de estado */
         setErrorMessage('');
 
@@ -73,8 +73,8 @@ class TopRatedHomeProvider extends ChangeNotifier {
   }
 
   /*metodo para forzar la actualización de datos (si el usuario lo requiere) */
-  Future<void> refreshTopRateMovies() async {
+  Future<void> refreshPossibleInterestMovies() async {
     _movies = null;
-    fetchTopRateMovies();
+    fetchPossiblesInterestMovies();
   }
 }

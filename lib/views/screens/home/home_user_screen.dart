@@ -1,6 +1,5 @@
-import 'package:appmovie_request/controllers/exports/exports.dart';
-
 import 'package:flutter/material.dart';
+import 'package:appmovie_request/controllers/exports/exports.dart';
 import 'package:provider/provider.dart';
 
 /*
@@ -15,6 +14,7 @@ class HomeUserScreen extends StatelessWidget {
     final populars = Provider.of<PopularsHomeProvider>(context);
     final rated = Provider.of<TopRatedHomeProvider>(context);
     final user = Provider.of<UserInformationProvider>(context);
+    final possible = Provider.of<PossibleInterestProvider>(context);
 
     return ScaffoldDownAndUpBlurWidget(
       child: CustomScrollView(
@@ -44,14 +44,16 @@ class HomeUserScreen extends StatelessWidget {
                 SizedBox(height: size.height * .02),
                 ListTopRatedComponents(rated: rated),
                 SizedBox(height: size.height * .02),
-
+                //tmabien te puede interesar
                 TitleArrowComponents(
-                    title:
-                        '${user.nameUser.text.substring(0, 7)}, también te puede interesar',
+                    title: user.nameUser.text.isEmpty
+                        ? 'También te puede interesar'
+                        : '${user.nameUser.text.substring(0, 7)}, también te puede interesar',
                     onTap: () {
                       //Todo: navegar a la lista completa
                     }),
                 SizedBox(height: size.height * .02),
+                ListPossibleInterestComponents(possible: possible),
 
                 SizedBox(height: size.height * .2),
               ],

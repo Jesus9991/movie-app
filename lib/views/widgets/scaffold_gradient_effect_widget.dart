@@ -264,3 +264,67 @@ class ScaffoldDownAppBarAndUpBlurWidget extends StatelessWidget {
     );
   }
 }
+
+class ScaffolAppBarWidget extends StatelessWidget {
+  final AppBar appBar;
+  final Widget child;
+
+  const ScaffolAppBarWidget({
+    super.key,
+    required this.appBar,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Scaffold(
+      // extendBodyBehindAppBar: true,
+      appBar: appBar,
+      body: SizedBox(
+        height: size.height,
+        width: size.width,
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            // fondo que se verá afectado por el desenfoque
+            Positioned(
+              bottom: 10,
+              child: Container(
+                alignment: Alignment.topCenter,
+                height: size.height * 0.2,
+                width: 80,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        PaletteTheme.terteary,
+                        PaletteTheme.tertearyTwo,
+                        PaletteTheme.blackThree,
+                      ]),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(100),
+                    topRight: Radius.circular(100),
+                  ),
+                ),
+              ),
+            ),
+
+            Blur(
+              blur: 150,
+              colorOpacity: 0.01,
+              blurColor: PaletteTheme.terteary,
+              child: SizedBox(
+                height: size.height,
+                width: size.width,
+              ),
+            ),
+            // El contenido principal del widget
+            child,
+          ],
+        ),
+      ),
+    );
+  }
+}

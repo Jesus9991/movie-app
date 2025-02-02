@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<!-- Permisos de camara -->
+    <key>NSCameraUsageDescription</key>
+    <string>Esta aplicación necesita acceder a la cámara para que puedas tomar fotos como evidencia de las visitas, y registrar imágenes de los lotes y fincas.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Esta aplicación necesita acceder a tu galería de fotos para que puedas seleccionar imágenes como pruebas de visitas, lotes y fincas.</string>
+
+
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

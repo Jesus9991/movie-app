@@ -7,9 +7,9 @@ shared preferences para almacenar el correo del usuario y el token
 class UserDataPreferences {
   /*string para las keys */
   String keyForEmail = 'email_user';
+  String keyForName = 'user_name_user';
   String keyForPassword = 'password_user';
   String keyForToken = 'token_user';
-  String keyForName = 'user_name_user';
   String keyForPhoto = 'user_photo_user';
 
   /*guarda el valor seleccionado */
@@ -29,7 +29,7 @@ class UserDataPreferences {
   Future<void> saveForPassword(String value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(keyForPassword, value);
-    log('keyForPassword $value');
+    log('saveForPassword $value');
   }
 
   /*recupera la opcion seleciconada */
@@ -55,7 +55,7 @@ class UserDataPreferences {
   Future<void> saveUserName(String value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(keyForName, value);
-    log('saveTokenUser $value');
+    log('saveUserName $value');
   }
 
   /*recupera la opcion seleciconada */
@@ -68,7 +68,7 @@ class UserDataPreferences {
   Future<void> saveForPhoto(String value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(keyForPhoto, value);
-    log('saveTokenUser $value');
+    log('saveForPhoto $value');
   }
 
   Future<String?> getForPhoto() async {

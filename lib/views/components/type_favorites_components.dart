@@ -86,7 +86,7 @@ class _CardTypeFavoritesComponents extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
               border: isFavorite
                   ? Border.all(width: 2, color: PaletteTheme.secondary)
-                  : Border.all(),
+                  : Border.all(width: 2, color: PaletteTheme.principal),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15),

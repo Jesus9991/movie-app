@@ -30,6 +30,9 @@ class MyProviderAPP extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => PossibleInterestProvider()),
         ChangeNotifierProvider(create: (context) => ListFilterSearchProvider()),
         ChangeNotifierProvider(create: (context) => SearchDelegateProvider()),
+        /*permisos*/
+        ChangeNotifierProvider(
+            create: (context) => GalleryPermissionProvider()),
       ],
       child: NavegationSystemApp(),
     );

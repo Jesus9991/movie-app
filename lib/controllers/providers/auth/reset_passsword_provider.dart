@@ -123,6 +123,41 @@ class ResetPassswordProvider extends ChangeNotifier {
     }
   }
 
+  setForPasswordOfEditProfile(BuildContext context) async {
+    try {
+      final passwordSaved = await UserDataPreferences().getForPassword();
+
+      if (_password.text == passwordSaved) {
+        /*navega al home si la contraseña y correo coinciden*/
+        Navigator.of(context).pop();
+        /*cambio de contraseña*/
+        await UserDataPreferences().saveForPassword(_password.text);
+
+        return SnackbarWidget.showSnackBar(
+          context: context,
+          message: '¡Cambio realizado con éxito!',
+          icon: Icons.error,
+          colorIcon: PaletteTheme.succesColor,
+        );
+      } else if (_password.text != passwordSaved) {
+        return SnackbarWidget.showSnackBar(
+          context: context,
+          message: 'La constraseña no coincide.',
+          icon: Icons.error,
+          colorIcon: PaletteTheme.terteary,
+        );
+      }
+      notifyListeners();
+    } catch (e) {
+      return SnackbarWidget.showSnackBar(
+        context: context,
+        message: 'Error: $e',
+        icon: Icons.error,
+        colorIcon: PaletteTheme.terteary,
+      );
+    }
+  }
+
   //limpia el provider
   cleanProvider() {
     _email.clear();

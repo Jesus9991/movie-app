@@ -6,9 +6,9 @@ provider: para el registro del usuario
 */
 class RegisterUserProvider extends ChangeNotifier {
   //controladores
+  final TextEditingController _userName = TextEditingController();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
-  final TextEditingController _userName = TextEditingController();
   String _tokenUser = '';
   bool _isLoading = false;
 
@@ -52,6 +52,28 @@ class RegisterUserProvider extends ChangeNotifier {
         MainRoutes.selectMoviesRoute,
         (route) => false,
       );
+
+      return SnackbarWidget.showSnackBar(
+        context: context,
+        message: '¡Registro exitoso!',
+        icon: Icons.error,
+        colorIcon: PaletteTheme.succesColor,
+      );
+    } catch (e) {
+      return SnackbarWidget.showSnackBar(
+        context: context,
+        message: 'Error: $e',
+        icon: Icons.error,
+        colorIcon: PaletteTheme.terteary,
+      );
+    }
+  }
+
+  //*EDITAR PERFIL
+
+  setNavegationForEditProfile(BuildContext context) async {
+    try {
+      Navigator.of(context).pop();
 
       return SnackbarWidget.showSnackBar(
         context: context,

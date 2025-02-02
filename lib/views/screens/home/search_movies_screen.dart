@@ -15,7 +15,7 @@ class SearchMoviesScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final movies = Provider.of<ListFilterSearchProvider>(context);
 
-    return Scaffold(
+    return ScaffolAppBarWidget(
         appBar: AppBar(
           title: Text(
             'Catálogo',
@@ -25,7 +25,7 @@ class SearchMoviesScreen extends StatelessWidget {
                 .copyWith(fontWeight: FontWeight.bold),
           ),
         ),
-        body: Column(
+        child: Column(
           children: [
             //abre el buscador
             _OpenSearchComponents(),

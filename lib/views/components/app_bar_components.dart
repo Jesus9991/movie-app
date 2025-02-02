@@ -113,6 +113,9 @@ class _DetailsAppBarComponentState extends State<_DetailsAppBarComponent> {
                       )
                     : Image.memory(
                         widget.info.imageData!,
+                        height: size.height * .6,
+                        width: size.width * .8,
+                        fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) =>
                             ErrorImagesComponents(
                           path: ImagesAssetsPath.photoProfile,

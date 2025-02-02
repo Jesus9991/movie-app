@@ -15,7 +15,7 @@ class UserInformationProvider extends ChangeNotifier {
   final TextEditingController _emailUser = TextEditingController();
   Uint8List? _imageData;
 
-  TextEditingController get nameUser => _emailUser;
+  TextEditingController get nameUser => _nameUser;
   TextEditingController get emailUser => _emailUser;
   Uint8List? get imageData => _imageData;
 
@@ -93,6 +93,22 @@ class UserInformationProvider extends ChangeNotifier {
 
       notifyListeners();
     }
+  }
+
+  //*ACTUALIZACION DE DATOS
+  setUpdateProfile() async {
+    log('Datos a actualizar email: ${_emailUser.text} name: ${_nameUser.text}');
+
+    /*guarda el correo y el nombre */
+    await UserDataPreferences().saveEmailUser(_emailUser.text);
+    await UserDataPreferences().saveUserName(_nameUser.text);
+
+    /*verifica que los datos se guardaron */
+    final email = await dataPreferences.getEmailUser();
+    final name = await dataPreferences.getUserName();
+    log('Datos guardados: Email: $email, Name: $name');
+
+    notifyListeners();
   }
 
   /*carga una imagen por defecto desde los assets */

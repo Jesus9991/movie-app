@@ -1,3 +1,4 @@
+import 'package:appmovie_request/controllers/exports/exports.dart';
 import 'package:flutter/material.dart';
 
 /*
@@ -9,7 +10,7 @@ class FavoritesMoviesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Scaffold(
+    return ScaffolAppBarWidget(
       appBar: AppBar(
         title: Text(
           'Favoritos',
@@ -19,7 +20,7 @@ class FavoritesMoviesScreen extends StatelessWidget {
               .copyWith(fontWeight: FontWeight.bold),
         ),
       ),
-      body: ListView(
+      child: ListView(
         children: [],
       ),
     );

@@ -1,3 +1,5 @@
+export 'package:appmovie_request/controllers/services/sql/favorites_movies_sql.dart';
+export 'package:appmovie_request/models/list_favorites_models.dart';
 export 'package:appmovie_request/models/search_delegate_models.dart';
 export 'package:appmovie_request/views/components/search_delegate_components.dart';
 export 'package:appmovie_request/controllers/providers/search_delegate_provider.dart';

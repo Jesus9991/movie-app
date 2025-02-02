@@ -11,34 +11,16 @@ class FavoritesMoviesScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('FavoritesMoviesSssfcreen'),
+        title: Text(
+          'Favoritos',
+          style: Theme.of(context)
+              .textTheme
+              .displaySmall!
+              .copyWith(fontWeight: FontWeight.bold),
+        ),
       ),
       body: ListView(
-        children: [
-          Container(
-            height: 200,
-            width: 200,
-            color: Colors.amber,
-          ),
-          SizedBox(height: size.height * .03),
-          Container(
-            height: 200,
-            width: 200,
-            color: Colors.red,
-          ),
-          SizedBox(height: size.height * .03),
-          Container(
-            height: 200,
-            width: 200,
-            color: Colors.amber,
-          ),
-          SizedBox(height: size.height * .03),
-          Container(
-            height: 200,
-            width: 200,
-            color: Colors.red,
-          ),
-        ],
+        children: [],
       ),
     );
   }

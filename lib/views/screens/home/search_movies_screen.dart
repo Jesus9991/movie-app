@@ -49,6 +49,8 @@ class _OpenSearchComponents extends StatelessWidget {
     Brightness brightness = MediaQuery.of(context).platformBrightness;
     /*verifica si el modo es oscuro o claro */
     bool isDarkMode = brightness == Brightness.dark;
+    final search = Provider.of<SearchDelegateProvider>(context);
+
     return Container(
       margin: EdgeInsets.symmetric(horizontal: size.width * .03),
       child: Row(
@@ -56,7 +58,10 @@ class _OpenSearchComponents extends StatelessWidget {
           //buscador
           InkWell(
             onTap: () {
-              //Todo: debe abrir el busccador
+              /*limpia el clear*/
+              search.setNullModel();
+              /*abre el modal */
+              showSearch(context: context, delegate: SearchDelegateWidget());
             },
             child: Container(
               height: size.height * .06,

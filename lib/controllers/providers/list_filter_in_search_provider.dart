@@ -64,7 +64,7 @@ class ListFilterSearchProvider extends ChangeNotifier {
         final data = json.decode(response.body);
         _movies = SearchFilterHomeModels.fromJson(data);
         _totalPages =
-            data["total_pages"] ?? 1; // Se obtiene el total de páginas
+            data["total_pages"] ?? 1; // se obtiene el total de paginas
 
         log('Total pages: $_totalPages');
         notifyListeners();
@@ -91,7 +91,7 @@ class ListFilterSearchProvider extends ChangeNotifier {
       final url = Uri.parse(
           "${ApiKeysPath.httpApi}/3/trending/movie/day?language=es-ES&api_key=${ApiKeysPath.apiKey}&page=$_currentPage");
 
-      log('Fetching more, page $_currentPage');
+      log('Fetching more, page $_currentPage url $url');
 
       final response = await http.get(
         url,
@@ -121,7 +121,7 @@ class ListFilterSearchProvider extends ChangeNotifier {
   //* REFRESCAR PELÍCULAS (Reinicia la paginación)
   Future<void> refreshPetitionMovies() async {
     _movies = null;
-    _currentPage = 1;
+    _currentPage++;
     await fetchPetitionMovies();
   }
 }

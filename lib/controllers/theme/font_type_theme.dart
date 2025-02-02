@@ -8,8 +8,8 @@ clase para manejar los tipos de fuentes del tema oscuro o claro
 
 class FontsTheme {
   /*tipo de fuente */
-  static TextStyle typeFont = GoogleFonts.urbanist();
-  static TextStyle secondFont = GoogleFonts.sora();
+  static TextStyle typeFont = GoogleFonts.lato();
+  static TextStyle secondFont = GoogleFonts.mulish();
 
   /*tipos de textos a usar modo claro*/
   static TextTheme lightThemeFont = TextTheme(

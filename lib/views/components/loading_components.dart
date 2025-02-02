@@ -39,8 +39,9 @@ class LoadingComponents extends StatelessWidget {
     return Center(
       child: !isiOS
           ? CircularProgressIndicator(
-              backgroundColor:
-                  isDarkMode ? PaletteTheme.secondary : PaletteTheme.whiteThree,
+              backgroundColor: isDarkMode
+                  ? PaletteTheme.blackThree
+                  : PaletteTheme.whiteThree,
               color: PaletteTheme.whiteThree,
             )
           : CupertinoActivityIndicator(

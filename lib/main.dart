@@ -28,6 +28,7 @@ class MyProviderAPP extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => PopularsHomeProvider()),
         ChangeNotifierProvider(create: (context) => TopRatedHomeProvider()),
         ChangeNotifierProvider(create: (context) => PossibleInterestProvider()),
+        ChangeNotifierProvider(create: (context) => ListFilterSearchProvider()),
       ],
       child: NavegationSystemApp(),
     );

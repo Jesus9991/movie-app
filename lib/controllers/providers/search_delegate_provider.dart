@@ -79,7 +79,7 @@ class SearchDelegateProvider extends ChangeNotifier {
     notifyListeners();
 
     final url = Uri.parse(
-        "${ApiKeysPath.httpApi}/3/search/movie?query=$query&include_adult=false&language=en-US&page=$_currentPage&api_key=${ApiKeysPath.apiKey}");
+        "${ApiKeysPath.httpApi}/3/search/movie?query=$query&include_adult=false&language=es-ES&page=$_currentPage&api_key=${ApiKeysPath.apiKey}");
 
     try {
       final response = await http.get(url);

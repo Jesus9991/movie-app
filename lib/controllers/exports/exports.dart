@@ -1,3 +1,5 @@
+export 'package:appmovie_request/models/details_movies_models.dart';
+export 'package:appmovie_request/controllers/providers/details_movie_provider.dart';
 export 'package:appmovie_request/views/components/empty_status_components.dart';
 export 'package:appmovie_request/controllers/providers/favorites_movies_provider.dart';
 export 'package:appmovie_request/views/widgets/modal_sheet_widget.dart';

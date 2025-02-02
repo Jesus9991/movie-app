@@ -2,7 +2,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:appmovie_request/controllers/exports/exports.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
 
 /*
@@ -35,6 +34,7 @@ class _ListBannerHomeComponentsState extends State<ListBannerHomeComponents> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final banner = Provider.of<BannerHomeProvider>(context);
+    final details = Provider.of<DetailsMovieProvider>(context);
 
     if (widget.banner.isLoading) {
       return ShimmerContainerComponents();
@@ -66,12 +66,15 @@ class _ListBannerHomeComponentsState extends State<ListBannerHomeComponents> {
           itemBuilder: (context, index, realIndex) {
             final data = widget.banner.movies!.results[index];
             return _BannerHomeComponent(
+              id: data.id,
               title: data.title,
               image: data.posterPath,
               year: data.releaseDate,
               voteAverage: data.voteAverage.toStringAsFixed(2),
-              onTap: () {
-                //Todo: navegar a detalles
+              onTap: () async {
+                /*navega a la pantalla de detalles */
+                await details.navegationForDetails(
+                    context: context, id: data.id, image: data.posterPath);
               },
             );
           },
@@ -89,6 +92,7 @@ class _ListBannerHomeComponentsState extends State<ListBannerHomeComponents> {
 
 class _BannerHomeComponent extends StatelessWidget {
   final Function onTap;
+  final int id;
   final String title;
   final String year;
   final String image;
@@ -99,6 +103,7 @@ class _BannerHomeComponent extends StatelessWidget {
     required this.image,
     required this.year,
     required this.voteAverage,
+    required this.id,
   });
 
   @override
@@ -114,16 +119,19 @@ class _BannerHomeComponent extends StatelessWidget {
             SizedBox(
               height: size.height,
               width: size.width,
-              child: Image.network(
-                "${ApiKeysPath.lookImages}$image",
-                fit: BoxFit.cover,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return ShimmerContainerComponents();
-                },
-                errorBuilder: (context, error, stackTrace) =>
-                    ErrorImagesComponents(
-                  borderRadio: 0,
+              child: Hero(
+                tag: id,
+                child: Image.network(
+                  "${ApiKeysPath.lookImages}$image",
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return ShimmerContainerComponents();
+                  },
+                  errorBuilder: (context, error, stackTrace) =>
+                      ErrorImagesComponents(
+                    borderRadio: 0,
+                  ),
                 ),
               ),
             ),
@@ -195,36 +203,20 @@ class TitleArrowComponents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    /*entorno el brillo actual (modo oscuro o claro) */
-    Brightness brightness = MediaQuery.of(context).platformBrightness;
-    /*verifica si el modo es oscuro o claro */
-    bool isDarkMode = brightness == Brightness.dark;
+
     return Container(
       width: size.width,
       height: size.height * .03,
       padding: EdgeInsets.symmetric(horizontal: size.width * .03),
-      child: Row(
-        children: [
-          Text(
-            title,
-            textAlign: TextAlign.start,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(fontWeight: FontWeight.bold),
-          ),
-          const Spacer(),
-          InkWell(
-            onTap: () => onTap(),
-            child: Icon(
-              Iconsax.arrow_right_3_outline,
-              color:
-                  isDarkMode ? PaletteTheme.secondary : PaletteTheme.principal,
-            ),
-          )
-        ],
+      child: Text(
+        title,
+        textAlign: TextAlign.start,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: Theme.of(context)
+            .textTheme
+            .bodyLarge!
+            .copyWith(fontWeight: FontWeight.bold),
       ),
     );
   }

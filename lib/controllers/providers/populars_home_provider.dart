@@ -38,7 +38,7 @@ class PopularsHomeProvider extends ChangeNotifier {
 
     try {
       final url = Uri.parse(
-          "${ApiKeysPath.httpApi}/3/tv/popular?language=es-ES&page=1");
+          "${ApiKeysPath.httpApi}/3/tv/popular?language=es-ES&page=2");
       final response = await http.get(
         url,
         headers: {

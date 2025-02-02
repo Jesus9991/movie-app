@@ -107,6 +107,7 @@ class _CardComponents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final details = Provider.of<DetailsMovieProvider>(context);
     return FadeIn(
       duration: const Duration(seconds: 1),
       child: Container(
@@ -118,24 +119,29 @@ class _CardComponents extends StatelessWidget {
           children: [
             //imagen
             InkWell(
-              onTap: () {
-                //Todo: debe navegar a los detalles
+              onTap: () async {
+                /*navega a la pantalla de detalles */
+                await details.navegationForDetails(
+                    context: context, id: int.parse(id), image: image);
               },
               child: SizedBox(
                 height: size.height * .1,
                 width: size.width,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: Image.network(
-                    "${ApiKeysPath.lookImages}$image",
-                    fit: BoxFit.cover,
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return ShimmerContainerComponents();
-                    },
-                    errorBuilder: (context, error, stackTrace) =>
-                        ErrorImagesComponents(
-                      borderRadio: 0,
+                  child: Hero(
+                    tag: int.parse(id),
+                    child: Image.network(
+                      "${ApiKeysPath.lookImages}$image",
+                      fit: BoxFit.cover,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return ShimmerContainerComponents();
+                      },
+                      errorBuilder: (context, error, stackTrace) =>
+                          ErrorImagesComponents(
+                        borderRadio: 0,
+                      ),
                     ),
                   ),
                 ),

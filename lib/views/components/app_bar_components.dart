@@ -130,3 +130,115 @@ class _DetailsAppBarComponentState extends State<_DetailsAppBarComponent> {
     );
   }
 }
+
+class DetailsAppBarComponents extends StatelessWidget {
+  final int id;
+  final String image;
+  const DetailsAppBarComponents({
+    super.key,
+    required this.id,
+    required this.image,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final details = Provider.of<DetailsMovieProvider>(context);
+    return SliverAppBar(
+      toolbarHeight: kToolbarHeight,
+      expandedHeight: size.height * 0.55,
+      elevation: 0,
+      pinned: true,
+      backgroundColor: PaletteTheme.transparent,
+      flexibleSpace: FlexibleSpaceBar(
+        collapseMode: CollapseMode.parallax,
+        stretchModes: [StretchMode.blurBackground, StretchMode.zoomBackground],
+        background: Stack(
+          // alignment: Alignment.bottomCenter,
+          children: [
+            // Imágenes
+            SizedBox(
+              height: size.height,
+              width: size.width,
+              child: Hero(
+                tag: id,
+                child: Image.network(
+                  "${ApiKeysPath.lookImages}$image",
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return ShimmerContainerComponents();
+                  },
+                  errorBuilder: (context, error, stackTrace) =>
+                      ErrorImagesComponents(borderRadio: 0),
+                ),
+              ),
+            ),
+
+            ShadowUpComponents(),
+
+            DetailsShadowComponents(),
+
+            if (details.movie != null)
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: size.height * .04),
+                  child: details.isLoading
+                      ? ShimmerTitleDetailsComponent()
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              details.movie!.title,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(
+                                      color: PaletteTheme.secondary,
+                                      fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              '${details.movie!.releaseDate} | ${details.movie!.adult == true ? '+18|' : ''} ${details.movie!.originalLanguage}',
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall!
+                                  .copyWith(color: PaletteTheme.secondary),
+                            ),
+                          ],
+                        ),
+                ),
+              )
+            else
+              Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Error al mostrar los banners',
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: size.height * .02),
+                    CustomErrorButton(
+                      isLoading: details.isLoading,
+                      onTap: () async {
+                        await details.fetchMovieDetails(id);
+                      },
+                    )
+                  ],
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}

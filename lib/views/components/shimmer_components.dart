@@ -6,7 +6,9 @@ import 'package:shimmer/shimmer.dart';
 shimmer para la carga de datos 
 */
 class ShimmerContainerComponents extends StatelessWidget {
-  const ShimmerContainerComponents({super.key});
+  final double? height;
+  final double? borderRadius;
+  const ShimmerContainerComponents({super.key, this.height, this.borderRadius});
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +27,11 @@ class ShimmerContainerComponents extends StatelessWidget {
             : PaletteTheme.whiteTwo.withAlpha((0.5 * 255).toInt()),
         enabled: true,
         child: Container(
-          height: size.height * .4,
+          height: height ?? size.height * .4,
           width: size.width,
-          color: Colors.black,
+          decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(borderRadius ?? 0)),
         ),
       ),
     );
@@ -113,6 +117,56 @@ class ShimmerSearchComponents extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class ShimmerTitleDetailsComponent extends StatelessWidget {
+  const ShimmerTitleDetailsComponent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    /*entorno el brillo actual (modo oscuro o claro) */
+    Brightness brightness = MediaQuery.of(context).platformBrightness;
+    /*verifica si el modo es oscuro o claro */
+    bool isDarkMode = brightness == Brightness.dark;
+    final size = MediaQuery.of(context).size;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.end,
+      spacing: 10,
+      children: [
+        Shimmer.fromColors(
+          baseColor: isDarkMode
+              ? PaletteTheme.blackThree
+              : PaletteTheme.whiteTwo.withAlpha((0.5 * 255).toInt()),
+          highlightColor: isDarkMode
+              ? PaletteTheme.blackThree.withAlpha((0.5 * 255).toInt())
+              : PaletteTheme.secondary.withAlpha((0.2 * 255).toInt()),
+          enabled: true,
+          child: Container(
+            height: size.height * .02,
+            width: size.width * .43,
+            decoration: BoxDecoration(
+                color: Colors.black, borderRadius: BorderRadius.circular(15)),
+          ),
+        ),
+        Shimmer.fromColors(
+          baseColor: isDarkMode
+              ? PaletteTheme.blackThree
+              : PaletteTheme.whiteTwo.withAlpha((0.5 * 255).toInt()),
+          highlightColor: isDarkMode
+              ? PaletteTheme.blackThree.withAlpha((0.5 * 255).toInt())
+              : PaletteTheme.secondary.withAlpha((0.2 * 255).toInt()),
+          enabled: true,
+          child: Container(
+            height: size.height * .01,
+            width: size.width * .43,
+            decoration: BoxDecoration(
+                color: Colors.black, borderRadius: BorderRadius.circular(15)),
+          ),
+        ),
+      ],
     );
   }
 }

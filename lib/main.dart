@@ -30,6 +30,8 @@ class MyProviderAPP extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => PossibleInterestProvider()),
         ChangeNotifierProvider(create: (context) => ListFilterSearchProvider()),
         ChangeNotifierProvider(create: (context) => SearchDelegateProvider()),
+        ChangeNotifierProvider(create: (context) => DetailsMovieProvider()),
+
         /*permisos*/
         ChangeNotifierProvider(
             create: (context) => GalleryPermissionProvider()),

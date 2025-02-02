@@ -79,7 +79,7 @@ class _ListSearchHomeComponentsState extends State<ListSearchHomeComponents> {
 
                 return Center(
                   child: _PopularsSearchHomeComponents(
-                    id: data.id.toString(),
+                    id: data.id,
                     title: data.title,
                     year: data.releaseDate,
                     image: data.posterPath,
@@ -112,7 +112,7 @@ class _ListSearchHomeComponentsState extends State<ListSearchHomeComponents> {
 }
 
 class _PopularsSearchHomeComponents extends StatelessWidget {
-  final String id;
+  final int id;
   final String title;
   final String year;
   final String image;
@@ -128,6 +128,7 @@ class _PopularsSearchHomeComponents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final details = Provider.of<DetailsMovieProvider>(context);
     return FadeIn(
       duration: const Duration(seconds: 1),
       child: Container(
@@ -147,19 +148,27 @@ class _PopularsSearchHomeComponents extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(15),
-                      onTap: () {
-                        //Todo: debe navegar a los detalles
+                      onTap: () async {
+                        /*navega a la pantalla de detalles */
+                        await details.navegationForDetails(
+                          context: context,
+                          id: id,
+                          image: image,
+                        );
                       },
-                      child: Image.network(
-                        "${ApiKeysPath.lookImages}$image",
-                        fit: BoxFit.cover,
-                        loadingBuilder: (context, child, loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return ShimmerContainerComponents();
-                        },
-                        errorBuilder: (context, error, stackTrace) =>
-                            ErrorImagesComponents(
-                          borderRadio: 15,
+                      child: Hero(
+                        tag: id,
+                        child: Image.network(
+                          "${ApiKeysPath.lookImages}$image",
+                          fit: BoxFit.cover,
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return ShimmerContainerComponents();
+                          },
+                          errorBuilder: (context, error, stackTrace) =>
+                              ErrorImagesComponents(
+                            borderRadio: 15,
+                          ),
                         ),
                       ),
                     ),

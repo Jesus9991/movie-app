@@ -83,7 +83,10 @@ class ProfileUserScreen extends StatelessWidget {
                   title: 'Favoritos',
                   icon: Iconsax.heart_outline,
                   onTap: () {
-                    //todo muestra la lista de favoritos
+                    Navigator.pushNamed(
+                      context,
+                      MainRoutes.homeFavoritesRoutes,
+                    );
                   },
                 ),
               ],

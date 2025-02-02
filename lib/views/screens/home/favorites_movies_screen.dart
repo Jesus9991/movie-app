@@ -99,6 +99,7 @@ class _PopularsSearchHomeComponents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final details = Provider.of<DetailsMovieProvider>(context);
     return FadeIn(
       duration: const Duration(seconds: 1),
       child: Container(
@@ -118,19 +119,24 @@ class _PopularsSearchHomeComponents extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(15),
-                      onTap: () {
-                        //Todo: debe navegar a los detalles
+                      onTap: () async {
+                        /*navega a la pantalla de detalles */
+                        await details.navegationForDetails(
+                            context: context, id: int.parse(id), image: image);
                       },
-                      child: Image.network(
-                        "${ApiKeysPath.lookImages}$image",
-                        fit: BoxFit.cover,
-                        loadingBuilder: (context, child, loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return ShimmerContainerComponents();
-                        },
-                        errorBuilder: (context, error, stackTrace) =>
-                            ErrorImagesComponents(
-                          borderRadio: 15,
+                      child: Hero(
+                        tag: int.parse(id),
+                        child: Image.network(
+                          "${ApiKeysPath.lookImages}$image",
+                          fit: BoxFit.cover,
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return ShimmerContainerComponents();
+                          },
+                          errorBuilder: (context, error, stackTrace) =>
+                              ErrorImagesComponents(
+                            borderRadio: 15,
+                          ),
                         ),
                       ),
                     ),

@@ -1,6 +1,7 @@
 import 'package:appmovie_request/controllers/exports/exports.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:provider/provider.dart';
 
 /*
 componentes para el buscador del searchdelegate
@@ -111,9 +112,12 @@ class _ResultSearchDelegateComponents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final details = Provider.of<DetailsMovieProvider>(context);
     return ListTile(
-      onTap: () {
-        //Todo: debe navegar a los detalles
+      onTap: () async {
+        /*navega a la pantalla de detalles */
+        await details.navegationForDetails(
+            context: context, id: int.parse(id), image: image);
       },
       subtitle: Text(
         year,
@@ -136,15 +140,19 @@ class _ResultSearchDelegateComponents extends StatelessWidget {
         width: size.width * .2,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(15),
-          child: Image.network(
-            "${ApiKeysPath.lookImages}$image",
-            fit: BoxFit.cover,
-            loadingBuilder: (context, child, loadingProgress) {
-              if (loadingProgress == null) return child;
-              return ShimmerContainerComponents();
-            },
-            errorBuilder: (context, error, stackTrace) => ErrorImagesComponents(
-              borderRadio: 15,
+          child: Hero(
+            tag: int.parse(id),
+            child: Image.network(
+              "${ApiKeysPath.lookImages}$image",
+              fit: BoxFit.cover,
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return ShimmerContainerComponents();
+              },
+              errorBuilder: (context, error, stackTrace) =>
+                  ErrorImagesComponents(
+                borderRadio: 15,
+              ),
             ),
           ),
         ),

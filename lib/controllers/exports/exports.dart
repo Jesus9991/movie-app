@@ -1,3 +1,5 @@
+export 'package:appmovie_request/views/widgets/modal_sheet_widget.dart';
+
 export 'package:appmovie_request/controllers/providers/permission/gallery_permission_provider.dart';
 export 'package:appmovie_request/views/components/profile_components.dart';
 export 'package:appmovie_request/controllers/services/sql/favorites_movies_sql.dart';

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:developer';
 import 'dart:io';
 import 'package:appmovie_request/controllers/exports/exports.dart';
@@ -115,5 +117,17 @@ class UserInformationProvider extends ChangeNotifier {
   Future<Uint8List> _loadDefaultImage() async {
     final ByteData data = await rootBundle.load(ImagesAssetsPath.photoProfile);
     return data.buffer.asUint8List();
+  }
+
+  /*cierra la sesion del usuario*/
+
+  setCloseSesion(BuildContext context) async {
+    await UserDataPreferences().getTokenUser();
+    await UserDataPreferences().clearUserData();
+    //navega
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      MainRoutes.loginUserRoute,
+      (route) => false,
+    );
   }
 }

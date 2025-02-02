@@ -1,3 +1,4 @@
+export 'package:appmovie_request/views/screens/profile/lorem_ipsum_profile_screen.dart';
 export 'package:appmovie_request/views/screens/profile/edit_profile_user_screen.dart';
 export 'package:appmovie_request/views/screens/profile/edit_profile_password_screen.dart';
 export 'package:appmovie_request/views/screens/auth/confirm_password_screen.dart';

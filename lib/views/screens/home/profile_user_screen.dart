@@ -1,4 +1,5 @@
 import 'package:appmovie_request/controllers/exports/exports.dart';
+import 'package:appmovie_request/controllers/exports/screen_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +13,13 @@ class ProfileUserScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    /*entorno el brillo actual (modo oscuro o claro) */
+    Brightness brightness = MediaQuery.of(context).platformBrightness;
+    /*verifica si el modo es oscuro o claro */
+    bool isDarkMode = brightness == Brightness.dark;
     final search = Provider.of<SearchDelegateProvider>(context);
+    final profile = Provider.of<UserInformationProvider>(context);
+
     return ScaffolAppBarWidget(
       appBar: AppBar(
         actions: [
@@ -95,7 +102,14 @@ class ProfileUserScreen extends StatelessWidget {
                   title: 'Políticas de privacidad',
                   icon: Iconsax.book_1_outline,
                   onTap: () {
-                    //Todo: debe llevar a politcas de privacidad
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoremIpsumProfileScreen(
+                          title: 'Políticas de privacidad',
+                        ),
+                      ),
+                    );
                   },
                 ),
                 const _CustomDividerComponents(),
@@ -104,7 +118,14 @@ class ProfileUserScreen extends StatelessWidget {
                   title: 'Términos y condiciones',
                   icon: Iconsax.user_add_outline,
                   onTap: () {
-                    //Todo: debe llevar a politcas de privacidad
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoremIpsumProfileScreen(
+                          title: 'Términos y condiciones',
+                        ),
+                      ),
+                    );
                   },
                 ),
               ],
@@ -124,7 +145,14 @@ class ProfileUserScreen extends StatelessWidget {
                   title: 'Acerca de la cuenta',
                   icon: Iconsax.security_outline,
                   onTap: () {
-                    //Todo: debe llevar a politcas de privacidad
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoremIpsumProfileScreen(
+                          title: 'Acerca de la cuenta',
+                        ),
+                      ),
+                    );
                   },
                 ),
                 const _CustomDividerComponents(),
@@ -132,9 +160,17 @@ class ProfileUserScreen extends StatelessWidget {
                 _MenuProfileComponents(
                   title: 'Cerrar sesión',
                   icon: Iconsax.arrow_bottom_outline,
-                  onTap: () {
-                    //Todo: debe cerrar la sesion
-                  },
+                  onTap: () => ModalSheetWidget.showSelectTwoOption(
+                    context: context,
+                    title: 'Cerrar sesión',
+                    subtitle:
+                        '¿Estás seguro de que deseas cerrar sesión? Tu sesión actual se terminará y necesitarás iniciar sesión nuevamente para continuar.',
+                    onConfirm: () async {
+                      await profile.setCloseSesion(context);
+                    },
+                    onCancel: () => Navigator.pop(context),
+                    isDark: isDarkMode,
+                  ),
                 ),
               ],
             ),
@@ -210,7 +246,7 @@ class _MenuProfileComponents extends StatelessWidget {
 }
 
 class _CustomDividerComponents extends StatelessWidget {
-  const _CustomDividerComponents({super.key});
+  const _CustomDividerComponents();
 
   @override
   Widget build(BuildContext context) {

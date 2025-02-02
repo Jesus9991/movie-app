@@ -7,4 +7,6 @@ class ImagesAssetsPath {
   static String googleBanner = 'assets/img/googlelogo.png';
   static String placeHolder = 'assets/img/movieplaceholder.png';
   static String photoProfile = 'assets/img/profilephoto.png';
+  static String lightEmpty = 'assets/img/lightEmpty.png';
+  static String darkEmpty = 'assets/img/darkEmpty.png';
 }

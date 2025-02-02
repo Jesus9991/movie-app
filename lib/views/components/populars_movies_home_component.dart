@@ -78,6 +78,8 @@ class _ListPopularsNowComponentsState extends State<ListPopularsNowComponents> {
                 year: data.firstAirDate,
                 image: data.posterPath,
                 voteAverage: data.voteAverage.toStringAsFixed(2),
+                popularity: data.popularity,
+                voteCount: data.voteCount,
               );
             },
             options: CarouselOptions(
@@ -99,12 +101,17 @@ class _PopularsMoviesHomeComponents extends StatelessWidget {
   final String year;
   final String image;
   final String voteAverage;
+  final double popularity;
+  final int voteCount;
+
   const _PopularsMoviesHomeComponents({
     required this.id,
     required this.title,
     required this.year,
     required this.image,
     required this.voteAverage,
+    required this.popularity,
+    required this.voteCount,
   });
 
   @override
@@ -146,25 +153,54 @@ class _PopularsMoviesHomeComponents extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    height: size.width * 0.1,
-                    width: size.height * 0.045,
-                    margin: EdgeInsets.all(5),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-                        child: IconButton(
-                          onPressed: () {
-                            //Todo: debe marcar como favorito
-                          },
-                          icon: Icon(
-                            Iconsax.heart_outline,
-                            size: 20,
+                  Selector<FavoritesMoviesProvider, bool>(
+                    selector: (_, provider) => provider.favoriteMovies
+                        .any((movie) => movie.id == int.parse(id)),
+                    builder: (context, isFavorite, child) {
+                      return Container(
+                        height: size.width * 0.1,
+                        width: size.height * 0.045,
+                        margin: EdgeInsets.all(5),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                            child: IconButton(
+                              onPressed: () async {
+                                final movie = Result(
+                                  id: int.parse(id),
+                                  name: title,
+                                  firstAirDate: year,
+                                  voteAverage: double.parse(voteAverage),
+                                  posterPath: "${ApiKeysPath.lookImages}$image",
+                                  backdropPath:
+                                      "${ApiKeysPath.lookImages}$image",
+                                  originalLanguage: '',
+                                  originalName: '',
+                                  overview: '',
+                                  popularity: popularity,
+                                  voteCount: voteCount,
+                                );
+
+                                await Provider.of<FavoritesMoviesProvider>(
+                                        context,
+                                        listen: false)
+                                    .toggleFavorite(movie, context);
+
+                                await VibrationEffectServices()
+                                    .buttonVibrationEffect();
+                              },
+                              icon: Icon(
+                                isFavorite
+                                    ? Iconsax.heart_bold
+                                    : Iconsax.heart_outline,
+                                size: 20,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -177,7 +213,6 @@ class _PopularsMoviesHomeComponents extends StatelessWidget {
               textAlign: TextAlign.start,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-
             Text(
               year,
               maxLines: 1,

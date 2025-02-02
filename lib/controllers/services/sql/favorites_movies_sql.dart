@@ -1,5 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'dart:developer';
+
 import 'package:appmovie_request/controllers/exports/exports.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -7,14 +9,15 @@ import 'package:path/path.dart';
 /*
 SQL para los favoritos
 */
+
 class SelectFavoritesMoviesSQL {
   static Database? _database;
 
-  /*Nombre de la base de datos */
+  // Nombre de la base de datos
   static const String _dbName = 'favorites_movies.db';
   static const String _tableName = 'favorites';
 
-  /*abre o crea la base de datos */
+  // Abre o crea la base de datos
   static Future<Database> getDatabase() async {
     if (_database != null) return _database!;
 
@@ -24,16 +27,16 @@ class SelectFavoritesMoviesSQL {
         return db.execute(
           '''CREATE TABLE $_tableName (
             id INTEGER PRIMARY KEY,
-            backdropPath TEXT,
-            originalLanguage TEXT,
-            originalName TEXT,
+            backdrop_path TEXT,
+            original_language TEXT,
+            original_name TEXT,
             overview TEXT,
             popularity REAL,
-            posterPath TEXT,
-            firstAirDate TEXT,
+            poster_path TEXT,
+            first_air_date TEXT,
             name TEXT,
-            voteAverage REAL,
-            voteCount INTEGER
+            vote_average REAL,
+            vote_count INTEGER
           )''',
         );
       },
@@ -43,28 +46,29 @@ class SelectFavoritesMoviesSQL {
     return _database!;
   }
 
-  /*inserta una película o serie favorita */
-  static Future<void> insertFavorite(ListFavoritesModels movie) async {
+  // Inserta una película o serie favorita
+  static Future<void> insertFavorite(Result movie) async {
     final db = await getDatabase();
     await db.insert(
       _tableName,
-      movie.toMap(),
+      movie.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
+    log('movie name: ${movie.name} movie id: ${movie.id}');
   }
 
-  /*obbtiene todas las películas o series favoritas */
-  static Future<List<ListFavoritesModels>> getAllFavorites() async {
+  // Obtiene todas las películas o series favoritas
+  static Future<List<Result>> getAllFavorites() async {
     final db = await getDatabase();
     final List<Map<String, dynamic>> maps = await db.query(_tableName);
 
     return List.generate(
       maps.length,
-      (i) => ListFavoritesModels.fromMap(maps[i]),
+      (i) => Result.fromJson(maps[i]),
     );
   }
 
-  /*elimina una película o serie favorita por su id */
+  // Elimina una película o serie favorita por su id
   static Future<void> deleteFavorite(int id) async {
     final db = await getDatabase();
     await db.delete(
@@ -74,7 +78,7 @@ class SelectFavoritesMoviesSQL {
     );
   }
 
-  /*verifica si una película o serie ya está en la base de datos */
+  // Verifica si una película o serie ya está en la base de datos
   static Future<bool> isFavorite(int id) async {
     final db = await getDatabase();
     final result = await db.query(

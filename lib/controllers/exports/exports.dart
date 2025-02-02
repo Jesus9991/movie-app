@@ -1,5 +1,6 @@
+export 'package:appmovie_request/views/components/empty_status_components.dart';
+export 'package:appmovie_request/controllers/providers/favorites_movies_provider.dart';
 export 'package:appmovie_request/views/widgets/modal_sheet_widget.dart';
-
 export 'package:appmovie_request/controllers/providers/permission/gallery_permission_provider.dart';
 export 'package:appmovie_request/views/components/profile_components.dart';
 export 'package:appmovie_request/controllers/services/sql/favorites_movies_sql.dart';
@@ -27,7 +28,6 @@ export 'package:appmovie_request/views/components/shimmer_components.dart';
 export 'package:appmovie_request/views/components/error_images_components.dart';
 export 'package:appmovie_request/controllers/providers/user_information_provider.dart';
 export 'package:appmovie_request/controllers/services/vibration_effect_services.dart';
-export 'package:appmovie_request/controllers/providers/favorites_movies_provider.dart';
 export 'package:appmovie_request/controllers/json/favorites_movies_json.dart';
 export 'package:appmovie_request/models/favorites_movies_models.dart';
 export 'package:appmovie_request/views/components/app_bar_components.dart';

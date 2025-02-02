@@ -159,7 +159,7 @@ class _PopularsSearchHomeComponents extends StatelessWidget {
                         },
                         errorBuilder: (context, error, stackTrace) =>
                             ErrorImagesComponents(
-                          borderRadio: 0,
+                          borderRadio: 15,
                         ),
                       ),
                     ),

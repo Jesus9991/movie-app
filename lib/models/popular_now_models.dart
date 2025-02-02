@@ -18,7 +18,7 @@ class PopularNowModels {
   }
 
   Map<String, dynamic> toJson() {
-    List<Map> resultsJson = this.results.map((i) => i.toJson()).toList();
+    List<Map> resultsJson = results.map((i) => i.toJson()).toList();
 
     return {
       'page': page,
@@ -30,7 +30,6 @@ class PopularNowModels {
 class Result {
   final String backdropPath;
   final int id;
-  final List<String> originCountry;
   final String originalLanguage;
   final String originalName;
   final String overview;
@@ -44,7 +43,6 @@ class Result {
   Result({
     required this.backdropPath,
     required this.id,
-    required this.originCountry,
     required this.originalLanguage,
     required this.originalName,
     required this.overview,
@@ -57,12 +55,9 @@ class Result {
   });
 
   factory Result.fromJson(Map<String, dynamic> json) {
-    var originList = json['origin_country'] as List;
-
     return Result(
-      backdropPath: json['backdrop_path'] ?? '',
       id: json['id'],
-      originCountry: List<String>.from(originList),
+      backdropPath: json['backdrop_path'] ?? '',
       originalLanguage: json['original_language'],
       originalName: json['original_name'],
       overview: json['overview'] ?? '',
@@ -79,7 +74,6 @@ class Result {
     return {
       'backdrop_path': backdropPath,
       'id': id,
-      'origin_country': originCountry,
       'original_language': originalLanguage,
       'original_name': originalName,
       'overview': overview,

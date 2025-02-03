@@ -22,7 +22,7 @@ class DetailsMovieScreen extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         slivers: [
-          DetailsAppBarComponents(id: id, image: image),
+          DetailsAppMoviesBarComponents(id: id, image: image),
           SliverPadding(
             padding: EdgeInsets.symmetric(
                 horizontal: size.width * .03, vertical: size.height * .01),

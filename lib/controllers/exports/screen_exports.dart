@@ -1,3 +1,4 @@
+export 'package:appmovie_request/views/screens/home/details_tv_screen.dart';
 export 'package:appmovie_request/views/screens/home/details_movie_screen.dart';
 export 'package:appmovie_request/views/screens/profile/lorem_ipsum_profile_screen.dart';
 export 'package:appmovie_request/views/screens/profile/edit_profile_user_screen.dart';

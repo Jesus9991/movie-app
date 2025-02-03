@@ -106,7 +106,7 @@ class _PopularsMoviesHomeComponents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final details = Provider.of<DetailsMovieProvider>(context);
+    final details = Provider.of<DetailsTvProvider>(context);
     return FadeIn(
       duration: const Duration(seconds: 1),
       child: Container(

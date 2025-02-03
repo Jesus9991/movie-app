@@ -1,3 +1,5 @@
+export 'package:appmovie_request/controllers/providers/details_tv_provider.dart';
+export 'package:appmovie_request/models/details_tv_models.dart';
 export 'package:appmovie_request/models/details_movies_models.dart';
 export 'package:appmovie_request/controllers/providers/details_movie_provider.dart';
 export 'package:appmovie_request/views/components/empty_status_components.dart';

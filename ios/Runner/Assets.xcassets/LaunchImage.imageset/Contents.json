@@ -9,21 +9,10 @@
       "appearances" : [
         {
           "appearance" : "luminosity",
-          "value" : "light"
-        }
-      ],
-      "filename" : "darklogo.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
           "value" : "dark"
         }
       ],
-      "filename" : "lightlogo 1.png",
+      "filename" : "LaunchImageDark.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -36,21 +25,10 @@
       "appearances" : [
         {
           "appearance" : "luminosity",
-          "value" : "light"
-        }
-      ],
-      "filename" : "darklogo 1.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
           "value" : "dark"
         }
       ],
-      "filename" : "lightlogo.png",
+      "filename" : "LaunchImageDark@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -63,21 +41,10 @@
       "appearances" : [
         {
           "appearance" : "luminosity",
-          "value" : "light"
-        }
-      ],
-      "filename" : "darklogo 2.png",
-      "idiom" : "universal",
-      "scale" : "3x"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
           "value" : "dark"
         }
       ],
-      "filename" : "lightlogo 2.png",
+      "filename" : "LaunchImageDark@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

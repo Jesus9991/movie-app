@@ -193,11 +193,12 @@ class _BannerHomeComponent extends StatelessWidget {
 /*titulo y arrow para mostrar al usuario */
 class TitleArrowComponents extends StatelessWidget {
   final String title;
-  final Function onTap;
+  final double? horizontal;
+
   const TitleArrowComponents({
     super.key,
     required this.title,
-    required this.onTap,
+    this.horizontal,
   });
 
   @override
@@ -207,7 +208,7 @@ class TitleArrowComponents extends StatelessWidget {
     return Container(
       width: size.width,
       height: size.height * .03,
-      padding: EdgeInsets.symmetric(horizontal: size.width * .03),
+      padding: EdgeInsets.symmetric(horizontal: horizontal ?? size.width * .03),
       child: Text(
         title,
         textAlign: TextAlign.start,

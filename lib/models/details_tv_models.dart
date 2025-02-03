@@ -217,7 +217,7 @@ class CreatedByTv {
         name: json["name"] ?? '',
         originalName: json["original_name"] ?? '',
         gender: json["gender"] ?? 0,
-        profilePath: json["profile_path"],
+        profilePath: json["profile_path"] ?? '',
       );
 
   Map<String, dynamic> toJson() => {
@@ -292,7 +292,7 @@ class LastEpisodeToAirTv {
         runtime: json["runtime"] ?? 0,
         seasonNumber: json["season_number"] ?? 0,
         showId: json["show_id"] ?? 0,
-        stillPath: json["still_path"],
+        stillPath: json["still_path"] ?? '',
       );
 
   Map<String, dynamic> toJson() => {

@@ -260,7 +260,7 @@ class DetailsAppBarTVComponents extends StatelessWidget {
       toolbarHeight: kToolbarHeight,
       expandedHeight: size.height * 0.55,
       elevation: 0,
-      pinned: true,
+      pinned: false,
       backgroundColor: PaletteTheme.transparent,
       flexibleSpace: FlexibleSpaceBar(
         collapseMode: CollapseMode.parallax,
@@ -315,7 +315,7 @@ class DetailsAppBarTVComponents extends StatelessWidget {
                                       fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              '${details.tvModel!.firstAirDate} | ${details.tvModel!.adult == true ? '+18|' : ''} ${details.tvModel!.originalLanguage}',
+                              '${details.tvModel!.firstAirDate} - ${details.tvModel!.lastEpisodeToAir.airDate} | ${details.tvModel!.adult == true ? '+18|' : ''} ${details.tvModel!.originalLanguage}',
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.center,

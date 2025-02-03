@@ -27,28 +27,16 @@ class HomeUserScreen extends StatelessWidget {
               [
                 SizedBox(height: size.height * .03),
                 //lista de populares
-                TitleArrowComponents(
-                    title: 'Populares ahora',
-                    onTap: () {
-                      //Todo: navegar a la lista completa
-                    }),
+                TitleArrowComponents(title: 'Populares ahora'),
                 SizedBox(height: size.height * .02),
                 ListPopularsNowComponents(populars: populars),
                 //mejor calificas
-                TitleArrowComponents(
-                    title: 'Mejor calificadas',
-                    onTap: () {
-                      //Todo: navegar a la lista completa
-                    }),
+                TitleArrowComponents(title: 'Mejor calificadas'),
                 SizedBox(height: size.height * .02),
                 ListTopRatedComponents(rated: rated),
                 SizedBox(height: size.height * .02),
                 //tmabien te puede interesar
-                TitleArrowComponents(
-                    title: 'También te puede interesar',
-                    onTap: () {
-                      //Todo: navegar a la lista completa
-                    }),
+                TitleArrowComponents(title: 'También te puede interesar'),
                 SizedBox(height: size.height * .02),
                 ListPossibleInterestComponents(possible: possible),
 
